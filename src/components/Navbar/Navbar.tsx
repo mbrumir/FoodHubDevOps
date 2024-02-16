@@ -1,17 +1,16 @@
 import React from 'react';
 import { Navbar, Tile } from 'react-bulma-components';
+import './Navbar.css';
 
 function NavbarTop() {
 	return (
 			<Navbar
 				color="primary"
-				fixed="top"
 				active={true}
 				textSize={3}
 			>
 				<Navbar.Brand
 					alignItems={"center"}
-					py={3}
 				>
 						<Tile
 								textWeight={"semibold"}

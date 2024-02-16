@@ -1,3 +1,6 @@
+@charset "utf-8";
+@import "../../bulma/bulma.sass";
+
 @charset "UTF-8";
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
@@ -346,8 +349,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   min-width: 300px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%;
 }
@@ -371,6 +373,8 @@ textarea {
   font-family: "Baloo 2", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+
+
 code,
 pre {
   -moz-osx-font-smoothing: auto;
@@ -379,7 +383,10 @@ pre {
 }
 
 body {
+  position: relative;
+  overflow: hidden;
   color: hsl(0, 0%, 29%);
+  background-color: #0a0a0a;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
@@ -2944,9 +2951,10 @@ a.tag:hover {
   height: 2.5em;
 }
 .select:not(.is-multiple):not(.is-loading)::after {
-  border-color: hsl(229, 53%, 53%);
+  border-color: hsl(34.08deg 86.94% 51.96%);
   right: 1.125em;
   z-index: 4;
+  transition: transform .2s ease-in-out, border-color .2s ease-in-out;
 }
 .select.is-rounded select {
   border-radius: 9999px;
@@ -10321,41 +10329,10 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   }
 }
 
-.footer {
-  background-color: hsl(0, 0%, 98%);
-  padding: 3rem 1.5rem 6rem;
-}
-
-.map--filters {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-.map--filters > div {
-  height: 50px;
-  background: white;
-  margin-right: 10px;
-  padding: 5px 10px;
-  display: flex;
-  align-items: center;
-  border-radius: 24px;
-}
-.map--filters > div input, .map--filters > div select {
-  border: none !important;
-  background: none !important;
-}
-.map--filters > div input:focus, .map--filters > div select:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-html, body {
-  background: hsl(0, 0%, 4%);
-  height: 100%;
-}
-
 /*# sourceMappingURL=App.css.map */
+
+.map-container {
+    height: 85vh;
+    width: 100%;
+}
+

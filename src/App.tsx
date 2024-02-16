@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../src/components/scss/App.css';
 import { Columns } from 'react-bulma-components';
 import NavbarTop from "./components/Navbar/Navbar";
 import FooterBottom from "./components/Footer/Footer";
@@ -9,13 +9,8 @@ function App() {
   return (
       <>
         <NavbarTop />
-        <div
-          style={{
-            height: "85vh",
-            width: "100vw",
-          }}
-        >
-          <Columns style={{height: "100%", paddingTop: "1rem"}}>
+        <div className={'map-container'}>
+          <Columns style={{height: "100%"}}>
             <MapComponent />
             {/*<Columns.Column size={12} desktop={{size: 8, offset: 0, narrow: false}} style={{height: "100%", padding: 0}}>*/}
             {/*  <MapComponent />*/}
