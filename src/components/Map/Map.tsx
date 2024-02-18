@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import { useState } from "react";
 import {
-	AdvancedMarker,
+	// AdvancedMarker,
 	APIProvider,
 	Map,
-	Marker,
-	Pin
+	Marker
+	// Pin
 } from '@vis.gl/react-google-maps';
 import MapFilters from "./MapFilters";
 import MapObjectDetails from "./MapObjectDetails";

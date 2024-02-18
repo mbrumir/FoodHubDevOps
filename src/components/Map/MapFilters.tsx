@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from 'react-bulma-components';
 import './MapFilters.css';
 

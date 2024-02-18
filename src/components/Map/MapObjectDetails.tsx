@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Form} from 'react-bulma-components';
+import {Box} from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
@@ -25,7 +25,7 @@ function MapObjectDetails({display}: { display: any }) {
 		<div style={{display: displayStyle, zIndex: 10}} className={'map--restaurant-details'}>
 			<Box>
 				<div className="header">
-					<img src="https://cdn.aniagotuje.com/pictures/articles/2023/07/45574163-v-1500x1500.jpg" width="80px" height="80px"></img>
+					<img src="https://cdn.aniagotuje.com/pictures/articles/2023/07/45574163-v-1500x1500.jpg" alt="zdjęcie z restauracji" width="80px" height="80px"></img>
 
 					<div className="header__content">
 						<div className="header__content__name">
