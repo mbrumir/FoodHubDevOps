@@ -17,6 +17,8 @@
     "@vis.gl/react-google-maps": "^0.6.1",
     "clamp-js": "^0.7.0",
     "cssnano": "^6.0.1",
+    "firebase": "^10.8.0",
+    "firebase-functions": "^4.7.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-cli": "^2.3.0",
@@ -24,9 +26,11 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-bulma-components": "^4.1.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-scripts": "5.0.1",
     "sass": "^1.69.5",
     "typescript": "^4.9.5",
@@ -55,5 +59,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.11"
   }
 }

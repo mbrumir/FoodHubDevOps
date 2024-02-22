@@ -1,0 +1,30 @@
+@import '../scss/variables';
+
+.success_modal {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    background-color: #fff;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid #5cb85c;
+    display: none;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+    span {
+        font-size: 1rem;
+        font-family: $family-title;
+        color: #5cb85c;
+    }
+}
+
+body.show-success-modal {
+    .success_modal {
+        opacity: 1;
+    }
+}

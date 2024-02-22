@@ -1,3 +1,27 @@
-.navbar-brand {
-    height: 65px;
+@import '../scss/variables';
+
+nav {
+    .navbar-brand {
+        height: 65px;
+    }
+
+    .info {
+        position: absolute;
+        top: 32px;
+        right: 0;
+        transform: translateY(-50%);
+        max-height: 58px;
+        padding: 0.5rem 2rem;
+        cursor: pointer;
+
+        svg {
+            transition: color .3s ease-in-out;
+        }
+
+        &:hover {
+            svg {
+                color: #0a0a0a;
+            }
+        }
+    }
 }

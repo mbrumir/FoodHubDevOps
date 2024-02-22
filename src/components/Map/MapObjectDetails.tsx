@@ -12,13 +12,15 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import './MapObjectDetails.css';
 
 function MapObjectDetails({display}: { display: any }) {
-	const displayStyle = display ? "block" : "none";
+	const displayStyle = display ? "flex" : "none";
 
 	function handleCloseModal(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
 		const target = e.target as HTMLElement;
 		const modal = target.closest('div.map--restaurant-details') as HTMLElement;
-
+		const footer = document.querySelector('.footer') as HTMLElement;
+		
 		modal.style.display="none";
+		footer.classList.remove('hide');
 	}
 
 	return (

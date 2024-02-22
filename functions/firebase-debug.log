@@ -1,0 +1,409 @@
+[debug] [2024-02-22T17:37:52.362Z] ----------------------------------------------------------------------
+[debug] [2024-02-22T17:37:52.364Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2024-02-22T17:37:52.364Z] CLI Version:   13.0.3
+[debug] [2024-02-22T17:37:52.364Z] Platform:      win32
+[debug] [2024-02-22T17:37:52.364Z] Node Version:  v20.10.0
+[debug] [2024-02-22T17:37:52.365Z] Time:          Thu Feb 22 2024 18:37:52 GMT+0100 (czas środkowoeuropejski standardowy)
+[debug] [2024-02-22T17:37:52.365Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-22T17:37:52.422Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-22T17:37:52.422Z] > authorizing via signed-in user (michal.gzella01@gmail.com)
+[debug] [2024-02-22T17:37:52.422Z] [iam] checking project foodhub-843ba for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-02-22T17:37:52.423Z] > refreshing access token with scopes: []
+[debug] [2024-02-22T17:37:52.424Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-02-22T17:37:52.425Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-22T17:37:52.594Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-02-22T17:37:52.594Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-22T17:37:52.626Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodhub-843ba:testIamPermissions [none]
+[debug] [2024-02-22T17:37:52.626Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodhub-843ba:testIamPermissions x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:37:52.626Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodhub-843ba:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-02-22T17:37:53.418Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodhub-843ba:testIamPermissions 200
+[debug] [2024-02-22T17:37:53.418Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodhub-843ba:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-02-22T17:37:53.418Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/foodhub-843ba/serviceAccounts/foodhub-843ba@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-02-22T17:37:53.418Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/foodhub-843ba/serviceAccounts/foodhub-843ba@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-02-22T17:37:54.264Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/foodhub-843ba/serviceAccounts/foodhub-843ba@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-02-22T17:37:54.264Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/foodhub-843ba/serviceAccounts/foodhub-843ba@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'foodhub-843ba'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script. 
+[debug] [2024-02-22T17:37:58.782Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba [none]
+[debug] [2024-02-22T17:37:59.168Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba 200
+[debug] [2024-02-22T17:37:59.168Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba {"projectId":"foodhub-843ba","projectNumber":"1071406119132","displayName":"foodhub","name":"projects/foodhub-843ba","resources":{"hostingSite":"foodhub-843ba","storageBucket":"foodhub-843ba.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_c23404af-1fea-4456-976b-b9cbc6f211c4"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-02-22T17:37:59.170Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-02-22T17:37:59.170Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:37:59.171Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-02-22T17:37:59.171Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:37:59.171Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudbuild.googleapis.com [none]
+[debug] [2024-02-22T17:37:59.171Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudbuild.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:37:59.172Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/artifactregistry.googleapis.com [none]
+[debug] [2024-02-22T17:37:59.172Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/artifactregistry.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:38:00.153Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudbuild.googleapis.com 200
+[debug] [2024-02-22T17:38:00.153Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:00.154Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/artifactregistry.googleapis.com 200
+[debug] [2024-02-22T17:38:00.154Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:00.171Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudfunctions.googleapis.com 200
+[debug] [2024-02-22T17:38:00.171Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:00.183Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/runtimeconfig.googleapis.com 200
+[debug] [2024-02-22T17:38:00.183Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-02-22T17:38:00.183Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba/adminSdkConfig [none]
+[debug] [2024-02-22T17:38:00.425Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba/adminSdkConfig 200
+[debug] [2024-02-22T17:38:00.425Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba/adminSdkConfig {"projectId":"foodhub-843ba","storageBucket":"foodhub-843ba.appspot.com","locationId":"europe-west"}
+[debug] [2024-02-22T17:38:00.426Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/foodhub-843ba/configs [none]
+[debug] [2024-02-22T17:38:00.731Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/foodhub-843ba/configs 200
+[debug] [2024-02-22T17:38:00.731Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/foodhub-843ba/configs {}
+[debug] [2024-02-22T17:38:00.732Z] Validating nodejs source
+[debug] [2024-02-22T17:38:01.631Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}
+[debug] [2024-02-22T17:38:01.632Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-02-22T17:38:01.633Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-02-22T17:38:01.641Z] Found firebase-functions binary at 'D:\FoodHub\foodhub\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8566
+
+[debug] [2024-02-22T17:38:02.037Z] Got response from /__/functions.yaml {"endpoints":{"verifyTurnstileToken":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"verifyTurnstileToken"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged D:\FoodHub\foodhub\functions (73.36 KB) for uploading 
+[debug] [2024-02-22T17:38:07.094Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/foodhub-843ba/locations/-/functions [none]
+[debug] [2024-02-22T17:38:07.696Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/foodhub-843ba/locations/-/functions 200
+[debug] [2024-02-22T17:38:07.696Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/foodhub-843ba/locations/-/functions {}
+[debug] [2024-02-22T17:38:07.697Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-02-22T17:38:08.347Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/-/functions 200
+[debug] [2024-02-22T17:38:08.347Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/-/functions {"functions":[{"name":"projects/foodhub-843ba/locations/europe-west1/functions/getTranscript","buildConfig":{"build":"projects/1071406119132/locations/europe-west1/builds/d09adb16-7314-45ee-b65e-81e87aeda9d0","runtime":"python312","entryPoint":"get_transcript","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-europe-west1","object":"getTranscript/function-source.zip","generation":"1708525968756430"}},"dockerRepository":"projects/foodhub-843ba/locations/europe-west1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-1071406119132-europe-west1","object":"getTranscript/function-source.zip","generation":"1708525968756430"}},"dockerRegistry":"ARTIFACT_REGISTRY"},"serviceConfig":{"service":"projects/foodhub-843ba/locations/europe-west1/services/gettranscript","timeoutSeconds":60,"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://gettranscript-uljcqwaroq-ew.a.run.app","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256M","allTrafficOnLatestRevision":true,"revision":"gettranscript-00003-cij","maxInstanceRequestConcurrency":1,"availableCpu":"0.1666"},"state":"ACTIVE","updateTime":"2024-02-21T14:33:31.085265623Z","labels":{"deployment-tool":"cli-gcloud"},"environment":"GEN_2","url":"https://europe-west1-foodhub-843ba.cloudfunctions.net/getTranscript","createTime":"2024-02-21T13:25:58.035594710Z"},{"name":"projects/foodhub-843ba/locations/europe-west1/functions/getTranscriptWhisper","buildConfig":{"build":"projects/1071406119132/locations/europe-west1/builds/d1865665-6bcc-4dbd-8f7a-87856fde95ea","runtime":"python312","entryPoint":"get_transcript","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-europe-west1","object":"getTranscriptWhisper/function-source.zip","generation":"1708527653406618"}},"dockerRepository":"projects/foodhub-843ba/locations/europe-west1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-1071406119132-europe-west1","object":"getTranscriptWhisper/function-source.zip","generation":"1708527653406618"}},"dockerRegistry":"ARTIFACT_REGISTRY"},"serviceConfig":{"service":"projects/foodhub-843ba/locations/europe-west1/services/gettranscriptwhisper","timeoutSeconds":60,"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://gettranscriptwhisper-uljcqwaroq-ew.a.run.app","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256M","allTrafficOnLatestRevision":true,"revision":"gettranscriptwhisper-00002-xim","maxInstanceRequestConcurrency":1,"availableCpu":"0.1666"},"state":"ACTIVE","updateTime":"2024-02-21T15:14:39.864588878Z","labels":{"deployment-tool":"cli-gcloud"},"environment":"GEN_2","url":"https://europe-west1-foodhub-843ba.cloudfunctions.net/getTranscriptWhisper","createTime":"2024-02-21T15:00:53.717866041Z"},{"name":"projects/foodhub-843ba/locations/us-central1/functions/getNewVideos","buildConfig":{"build":"projects/1071406119132/locations/us-central1/builds/aaf8029e-6a6a-489f-babe-bd80be31b25d","runtime":"nodejs18","entryPoint":"getNewVideos","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"getNewVideos/function-source.zip","generation":"1708269265694334"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/foodhub-843ba/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"getNewVideos/function-source.zip","generation":"1708269265694334"}},"dockerRegistry":"ARTIFACT_REGISTRY"},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/getnewvideos","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/getNewVideos","FUNCTION_TARGET":"getNewVideos"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://getnewvideos-uljcqwaroq-uc.a.run.app","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"getnewvideos-00001-coy","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-02-18T15:19:08.563709691Z","labels":{"firebase-functions-hash":"a192246ebc044e757ebccb3ede61b46529054bfa","deployment-tool":"cli-firebase","deployment-callable":"true"},"environment":"GEN_2","url":"https://us-central1-foodhub-843ba.cloudfunctions.net/getNewVideos","createTime":"2024-02-18T15:14:25.897763258Z"}]}
+[debug] [2024-02-22T17:38:08.347Z] GCFv2 function has a deprecated runtime: {
+  "name": "projects/foodhub-843ba/locations/europe-west1/functions/getTranscript",
+  "buildConfig": {
+    "build": "projects/1071406119132/locations/europe-west1/builds/d09adb16-7314-45ee-b65e-81e87aeda9d0",
+    "runtime": "python312",
+    "entryPoint": "get_transcript",
+    "source": {
+      "storageSource": {
+        "bucket": "gcf-v2-sources-1071406119132-europe-west1",
+        "object": "getTranscript/function-source.zip",
+        "generation": "1708525968756430"
+      }
+    },
+    "dockerRepository": "projects/foodhub-843ba/locations/europe-west1/repositories/gcf-artifacts",
+    "sourceProvenance": {
+      "resolvedStorageSource": {
+        "bucket": "gcf-v2-sources-1071406119132-europe-west1",
+        "object": "getTranscript/function-source.zip",
+        "generation": "1708525968756430"
+      }
+    },
+    "dockerRegistry": "ARTIFACT_REGISTRY"
+  },
+  "serviceConfig": {
+    "service": "projects/foodhub-843ba/locations/europe-west1/services/gettranscript",
+    "timeoutSeconds": 60,
+    "maxInstanceCount": 100,
+    "ingressSettings": "ALLOW_ALL",
+    "uri": "https://gettranscript-uljcqwaroq-ew.a.run.app",
+    "serviceAccountEmail": "1071406119132-compute@developer.gserviceaccount.com",
+    "availableMemory": "256M",
+    "allTrafficOnLatestRevision": true,
+    "revision": "gettranscript-00003-cij",
+    "maxInstanceRequestConcurrency": 1,
+    "availableCpu": "0.1666"
+  },
+  "state": "ACTIVE",
+  "updateTime": "2024-02-21T14:33:31.085265623Z",
+  "labels": {
+    "deployment-tool": "cli-gcloud"
+  },
+  "environment": "GEN_2",
+  "url": "https://europe-west1-foodhub-843ba.cloudfunctions.net/getTranscript",
+  "createTime": "2024-02-21T13:25:58.035594710Z"
+}
+[debug] [2024-02-22T17:38:08.348Z] Converting a function to an endpoint with an invalid memory option 244.140625
+[debug] [2024-02-22T17:38:08.348Z] GCFv2 function has a deprecated runtime: {
+  "name": "projects/foodhub-843ba/locations/europe-west1/functions/getTranscriptWhisper",
+  "buildConfig": {
+    "build": "projects/1071406119132/locations/europe-west1/builds/d1865665-6bcc-4dbd-8f7a-87856fde95ea",
+    "runtime": "python312",
+    "entryPoint": "get_transcript",
+    "source": {
+      "storageSource": {
+        "bucket": "gcf-v2-sources-1071406119132-europe-west1",
+        "object": "getTranscriptWhisper/function-source.zip",
+        "generation": "1708527653406618"
+      }
+    },
+    "dockerRepository": "projects/foodhub-843ba/locations/europe-west1/repositories/gcf-artifacts",
+    "sourceProvenance": {
+      "resolvedStorageSource": {
+        "bucket": "gcf-v2-sources-1071406119132-europe-west1",
+        "object": "getTranscriptWhisper/function-source.zip",
+        "generation": "1708527653406618"
+      }
+    },
+    "dockerRegistry": "ARTIFACT_REGISTRY"
+  },
+  "serviceConfig": {
+    "service": "projects/foodhub-843ba/locations/europe-west1/services/gettranscriptwhisper",
+    "timeoutSeconds": 60,
+    "maxInstanceCount": 100,
+    "ingressSettings": "ALLOW_ALL",
+    "uri": "https://gettranscriptwhisper-uljcqwaroq-ew.a.run.app",
+    "serviceAccountEmail": "1071406119132-compute@developer.gserviceaccount.com",
+    "availableMemory": "256M",
+    "allTrafficOnLatestRevision": true,
+    "revision": "gettranscriptwhisper-00002-xim",
+    "maxInstanceRequestConcurrency": 1,
+    "availableCpu": "0.1666"
+  },
+  "state": "ACTIVE",
+  "updateTime": "2024-02-21T15:14:39.864588878Z",
+  "labels": {
+    "deployment-tool": "cli-gcloud"
+  },
+  "environment": "GEN_2",
+  "url": "https://europe-west1-foodhub-843ba.cloudfunctions.net/getTranscriptWhisper",
+  "createTime": "2024-02-21T15:00:53.717866041Z"
+}
+[debug] [2024-02-22T17:38:08.348Z] Converting a function to an endpoint with an invalid memory option 244.140625
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-02-22T17:38:08.350Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/run.googleapis.com [none]
+[debug] [2024-02-22T17:38:08.350Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/run.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:38:08.351Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/eventarc.googleapis.com [none]
+[debug] [2024-02-22T17:38:08.351Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/eventarc.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:38:08.352Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/pubsub.googleapis.com [none]
+[debug] [2024-02-22T17:38:08.352Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/pubsub.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:38:08.353Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/storage.googleapis.com [none]
+[debug] [2024-02-22T17:38:08.353Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/storage.googleapis.com x-goog-quota-user=projects/foodhub-843ba
+[debug] [2024-02-22T17:38:09.293Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/pubsub.googleapis.com 200
+[debug] [2024-02-22T17:38:09.293Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/pubsub.googleapis.com [omitted]
+[info] +  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:09.314Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/storage.googleapis.com 200
+[debug] [2024-02-22T17:38:09.314Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/storage.googleapis.com [omitted]
+[info] +  functions: required API storage.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:09.318Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/run.googleapis.com 200
+[debug] [2024-02-22T17:38:09.318Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/run.googleapis.com [omitted]
+[info] +  functions: required API run.googleapis.com is enabled 
+[debug] [2024-02-22T17:38:09.325Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/eventarc.googleapis.com 200
+[debug] [2024-02-22T17:38:09.325Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodhub-843ba/services/eventarc.googleapis.com [omitted]
+[info] +  functions: required API eventarc.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-02-22T17:38:09.326Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-02-22T17:38:09.326Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-02-22T17:38:09.835Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-02-22T17:38:09.835Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-1071406119132@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"104053207496403118426"}}
+[debug] [2024-02-22T17:38:09.903Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-02-22T17:38:09.903Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/1071406119132/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-1071406119132@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"111091331569394981381"}}
+[debug] [2024-02-22T17:38:09.904Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba [none]
+[debug] [2024-02-22T17:38:10.160Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba 200
+[debug] [2024-02-22T17:38:10.160Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/foodhub-843ba {"projectId":"foodhub-843ba","projectNumber":"1071406119132","displayName":"foodhub","name":"projects/foodhub-843ba","resources":{"hostingSite":"foodhub-843ba","storageBucket":"foodhub-843ba.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_c23404af-1fea-4456-976b-b9cbc6f211c4"}
+[debug] [2024-02-22T17:38:10.161Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2024-02-22T17:38:10.969Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2024-02-22T17:38:10.969Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-1071406119132-us-central1/5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip?GoogleAccessId=service-1071406119132@gcf-admin-robot.iam.gserviceaccount.com&Expires=1708625290&Signature=IPP4EGLPp4AL62RVFt8IMhcbfLNiPnSU1rATAn%2F6WLrlEPmHfx%2Btb%2B6olxzb4teUYnAFmbP7uOxs608H3xwhqs%2B12UjMbbiwG52Og2%2BosT%2BTapqBKp9KiGj%2BUw6stJScX45EPQzjhGafeEMgDaOQBqgL0vXT9ZxSArpRjpOGQoKo%2FjforVKTLDV%2F3fhCfneDhSmVFVXYhgkbn726gySkdbmkAWxFiM%2BaHPIivBn6E2EOL9jucfLY2XR4kEecda4%2BHJAAIwWonngXSRhSAGABSwi%2BwNATy2T7odJL7j2MAkvrYHv1F1gXmZx%2FcFmlOQ4kGRGEG4TqIIRE4W3KDtfhFg%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-1071406119132-us-central1","object":"5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip"}}
+[debug] [2024-02-22T17:38:10.970Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-1071406119132-us-central1/5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip GoogleAccessId=service-1071406119132%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1708625290&Signature=IPP4EGLPp4AL62RVFt8IMhcbfLNiPnSU1rATAn%2F6WLrlEPmHfx%2Btb%2B6olxzb4teUYnAFmbP7uOxs608H3xwhqs%2B12UjMbbiwG52Og2%2BosT%2BTapqBKp9KiGj%2BUw6stJScX45EPQzjhGafeEMgDaOQBqgL0vXT9ZxSArpRjpOGQoKo%2FjforVKTLDV%2F3fhCfneDhSmVFVXYhgkbn726gySkdbmkAWxFiM%2BaHPIivBn6E2EOL9jucfLY2XR4kEecda4%2BHJAAIwWonngXSRhSAGABSwi%2BwNATy2T7odJL7j2MAkvrYHv1F1gXmZx%2FcFmlOQ4kGRGEG4TqIIRE4W3KDtfhFg%3D%3D
+[debug] [2024-02-22T17:38:10.970Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-1071406119132-us-central1/5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip [stream]
+[debug] [2024-02-22T17:38:11.568Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-1071406119132-us-central1/5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip 200
+[debug] [2024-02-22T17:38:11.568Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-1071406119132-us-central1/5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] 
+The following functions are found in your project but do not exist in your local source code:
+	getNewVideos(us-central1)
+
+If you are renaming a function or changing its region, it is recommended that you create the new function first before deleting the old one to prevent event loss. For more info, visit https://firebase.google.com/docs/functions/manage-functions#modify
+
+[info] i  functions: creating Node.js 18 (2nd Gen) function verifyTurnstileToken(us-central1)... 
+[debug] [2024-02-22T17:38:16.617Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions functionId=verifyTurnstileToken
+[debug] [2024-02-22T17:38:16.617Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions {"name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-uploads-1071406119132-us-central1","object":"5b31b302-8570-4cc4-bbab-dca4359d3b6c.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"}}
+[debug] [2024-02-22T17:38:17.843Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions 200
+[debug] [2024-02-22T17:38:17.843Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/functions {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2024-02-22T17:38:17.844Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:18.584Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:18.584Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Creating build","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:19.094Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:19.094Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:19.834Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:19.834Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:20.841Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:20.841Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:21.567Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:21.567Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:23.570Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:23.570Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:24.305Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:24.306Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:28.320Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:28.320Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:29.019Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:29.019Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:37.029Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:37.029Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:37.814Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:37.814Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:47.828Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:47.828Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:48.610Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:48.610Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:38:58.611Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:38:58.611Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:38:59.393Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:38:59.393Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:39:09.396Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:39:09.397Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:39:09.622Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:39:09.623Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build finished","state":"COMPLETE","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","message":"Creating Cloud Run service","state":"IN_PROGRESS","resource":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","resourceUri":"https://console.cloud.google.com/run/detail/us-central1/verifyturnstiletoken?project=foodhub-843ba"}],"sourceToken":"Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA==","operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:39:09.623Z] Got source token Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA== for region us-central1
+[debug] [2024-02-22T17:39:19.626Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:39:19.626Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:39:20.449Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:39:20.449Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build finished","state":"COMPLETE","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","message":"Creating Cloud Run service","state":"IN_PROGRESS","resource":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","resourceUri":"https://console.cloud.google.com/run/detail/us-central1/verifyturnstiletoken?project=foodhub-843ba"}],"sourceToken":"Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA==","operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2024-02-22T17:39:20.449Z] Got source token Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA== for region us-central1
+[debug] [2024-02-22T17:39:30.456Z] [create-default-us-central1-verifyTurnstileToken] Retrying task index 0
+[debug] [2024-02-22T17:39:30.456Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 [none]
+[debug] [2024-02-22T17:39:31.240Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 200
+[debug] [2024-02-22T17:39:31.240Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47 {"name":"projects/foodhub-843ba/locations/us-central1/operations/operation-1708623497202-611fbe89b0ce7-70d2da48-020eed47","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-02-22T17:38:17.582201312Z","endTime":"2024-02-22T17:39:24.641215488Z","target":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build finished","state":"COMPLETE","resource":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/a81472b2-898b-4144-a0e1-8282a861f33d?project=1071406119132"},{"name":"SERVICE","message":"Creating Cloud Run service","state":"COMPLETE","resource":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","resourceUri":"https://console.cloud.google.com/run/detail/us-central1/verifyturnstiletoken?project=foodhub-843ba"}],"sourceToken":"Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA==","operationType":"CREATE_FUNCTION"},"done":true,"response":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/foodhub-843ba/locations/us-central1/functions/verifyTurnstileToken","buildConfig":{"build":"projects/1071406119132/locations/us-central1/builds/a81472b2-898b-4144-a0e1-8282a861f33d","runtime":"nodejs18","entryPoint":"verifyTurnstileToken","source":{"storageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/foodhub-843ba/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-1071406119132-us-central1","object":"verifyTurnstileToken/function-source.zip","generation":"1708623497364465"}},"dockerRegistry":"ARTIFACT_REGISTRY"},"serviceConfig":{"service":"projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}","GCLOUD_PROJECT":"foodhub-843ba","EVENTARC_CLOUD_EVENT_SOURCE":"projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken","FUNCTION_TARGET":"verifyTurnstileToken"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://verifyturnstiletoken-uljcqwaroq-uc.a.run.app","serviceAccountEmail":"1071406119132-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"verifyturnstiletoken-00001-jof","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-02-22T17:38:17.578857692Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"6f288c283a8fcde44882412643f885ca38019148"},"environment":"GEN_2","url":"https://us-central1-foodhub-843ba.cloudfunctions.net/verifyTurnstileToken","createTime":"2024-02-22T17:38:17.578857692Z"}}
+[debug] [2024-02-22T17:39:31.240Z] Got source token Clhwcm9qZWN0cy8xMDcxNDA2MTE5MTMyL2xvY2F0aW9ucy91cy1jZW50cmFsMS9idWlsZHMvYTgxNDcyYjItODk4Yi00MTQ0LWEwZTEtODI4MmE4NjFmMzNkEld1cy1jZW50cmFsMS1kb2NrZXIucGtnLmRldi9mb29kaHViLTg0M2JhL2djZi1hcnRpZmFjdHMvdmVyaWZ5X3R1cm5zdGlsZV90b2tlbjp2ZXJzaW9uXzEY3PGfppcfIktwcm9qZWN0cy9mb29kaHViLTg0M2JhL2xvY2F0aW9ucy91cy1jZW50cmFsMS9mdW5jdGlvbnMvdmVyaWZ5VHVybnN0aWxlVG9rZW4qCwi9jd6uBhC4po8jMghub2RlanMxOA== for region us-central1
+[debug] [2024-02-22T17:39:31.241Z] >>> [apiv2][query] POST https://run.googleapis.com/v1/projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken:setIamPolicy [none]
+[debug] [2024-02-22T17:39:31.241Z] >>> [apiv2][body] POST https://run.googleapis.com/v1/projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken:setIamPolicy {"policy":{"bindings":[{"role":"roles/run.invoker","members":["allUsers"]}],"etag":"","version":3},"updateMask":"bindings,etag,version"}
+[debug] [2024-02-22T17:39:32.236Z] <<< [apiv2][status] POST https://run.googleapis.com/v1/projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken:setIamPolicy 403
+[debug] [2024-02-22T17:39:32.237Z] <<< [apiv2][body] POST https://run.googleapis.com/v1/projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken:setIamPolicy {"error":{"code":403,"message":"Permission 'run.services.setIamPolicy' denied on resource 'projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken' (or resource may not exist).","status":"PERMISSION_DENIED"}}
+[error] Failed to set the IAM Policy on the Service projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken
+[debug] [2024-02-22T17:39:32.240Z] Total Function Deployment time: 75622
+[debug] [2024-02-22T17:39:32.240Z] 1 Functions Deployed
+[debug] [2024-02-22T17:39:32.240Z] 1 Functions Errored
+[debug] [2024-02-22T17:39:32.240Z] 0 Function Deployments Aborted
+[debug] [2024-02-22T17:39:32.240Z] Average Function Deployment time: 75621
+[info] 
+[info] Functions deploy had errors with the following functions:
+	verifyTurnstileToken(us-central1)
+[info] 
+[info] Unable to set the invoker for the IAM policy on the following functions:
+	verifyTurnstileToken(us-central1)
+[info] 
+[info] Some common causes of this:
+[info] 
+[info] - You may not have the roles/functions.admin IAM role. Note that roles/functions.developer does not allow you to change IAM policies.
+[info] 
+[info] - An organization policy that restricts Network Access on your project.
+[info] i  functions: cleaning up build files... 
+[debug] [2024-02-22T17:39:32.379Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/repositories/gcf-artifacts/packages/verify_turnstile_token [none]
+[debug] [2024-02-22T17:39:32.380Z] >>> [apiv2][query] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list [none]
+[debug] [2024-02-22T17:39:32.849Z] <<< [apiv2][status] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list 404
+[debug] [2024-02-22T17:39:32.849Z] <<< [apiv2][body] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2024-02-22T17:39:32.849Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[debug] [2024-02-22T17:39:32.865Z] >>> [apiv2][query] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list [none]
+[debug] [2024-02-22T17:39:33.135Z] <<< [apiv2][status] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list 404
+[debug] [2024-02-22T17:39:33.135Z] <<< [apiv2][body] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2024-02-22T17:39:33.135Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[debug] [2024-02-22T17:39:33.249Z] >>> [apiv2][query] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list [none]
+[debug] [2024-02-22T17:39:33.341Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/repositories/gcf-artifacts/packages/verify_turnstile_token 200
+[debug] [2024-02-22T17:39:33.341Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/repositories/gcf-artifacts/packages/verify_turnstile_token {"name":"projects/foodhub-843ba/locations/us-central1/operations/fa91c867-9807-4e8f-ba6c-ac5a29f49fe0","metadata":{"@type":"type.googleapis.com/google.devtools.artifactregistry.v1beta2.OperationMetadata"}}
+[debug] [2024-02-22T17:39:33.342Z] >>> [apiv2][query] GET https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/operations/fa91c867-9807-4e8f-ba6c-ac5a29f49fe0 [none]
+[debug] [2024-02-22T17:39:33.547Z] <<< [apiv2][status] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list 404
+[debug] [2024-02-22T17:39:33.547Z] <<< [apiv2][body] GET https://us.gcr.io/v2/foodhub-843ba/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2024-02-22T17:39:33.547Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[debug] [2024-02-22T17:39:34.186Z] <<< [apiv2][status] GET https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/operations/fa91c867-9807-4e8f-ba6c-ac5a29f49fe0 200
+[debug] [2024-02-22T17:39:34.186Z] <<< [apiv2][body] GET https://artifactregistry.googleapis.com/v1beta2/projects/foodhub-843ba/locations/us-central1/operations/fa91c867-9807-4e8f-ba6c-ac5a29f49fe0 {"name":"projects/foodhub-843ba/locations/us-central1/operations/fa91c867-9807-4e8f-ba6c-ac5a29f49fe0","metadata":{"@type":"type.googleapis.com/google.devtools.artifactregistry.v1beta2.OperationMetadata"},"done":true,"response":{"@type":"type.googleapis.com/google.protobuf.Empty"}}
+[warn] !  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/gcr/images/foodhub-843ba/us/gcf 
+[debug] [2024-02-22T17:39:34.186Z] Functions deploy failed.
+[debug] [2024-02-22T17:39:34.187Z] {
+  "endpoint": {
+    "id": "verifyTurnstileToken",
+    "project": "foodhub-843ba",
+    "region": "us-central1",
+    "entryPoint": "verifyTurnstileToken",
+    "platform": "gcfv2",
+    "runtime": "nodejs18",
+    "callableTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"foodhub-843ba\",\"storageBucket\":\"foodhub-843ba.appspot.com\",\"locationId\":\"europe-west\"}",
+      "GCLOUD_PROJECT": "foodhub-843ba",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/foodhub-843ba/locations/us-central1/services/verifyTurnstileToken"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": false,
+    "hash": "6f288c283a8fcde44882412643f885ca38019148",
+    "uri": "https://verifyturnstiletoken-uljcqwaroq-uc.a.run.app",
+    "runServiceId": "verifyturnstiletoken"
+  },
+  "op": "set invoker",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "exit": 1,
+    "message": "Failed to set the IAM Policy on the Service projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Permission 'run.services.setIamPolicy' denied on resource 'projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken' (or resource may not exist).",
+            "status": "PERMISSION_DENIED"
+          }
+        },
+        "response": {
+          "statusCode": 403
+        }
+      },
+      "exit": 1,
+      "message": "HTTP Error: 403, Permission 'run.services.setIamPolicy' denied on resource 'projects/foodhub-843ba/locations/us-central1/services/verifyturnstiletoken' (or resource may not exist).",
+      "status": 403
+    },
+    "status": 403,
+    "code": 403
+  }
+}
+[debug] [2024-02-22T17:39:34.248Z] Error: Failed to set invoker function verifyTurnstileToken in region us-central1
+    at C:\Users\micha\AppData\Roaming\nvm\v20.10.0\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:51:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV2Function (C:\Users\micha\AppData\Roaming\nvm\v20.10.0\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:312:13)
+    at async Fabricator.createEndpoint (C:\Users\micha\AppData\Roaming\nvm\v20.10.0\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:136:13)
+    at async handle (C:\Users\micha\AppData\Roaming\nvm\v20.10.0\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:88:17)
+[error] 
+[error] Error: There was an error deploying functions

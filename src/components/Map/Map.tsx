@@ -26,6 +26,15 @@ function MapComponent() {
 		setMarkers(markerObj)
 	}, []);
 
+	function hideFooter() {
+		const footer = document.querySelector('footer') as HTMLElement;
+		const restaurantDetails = document.querySelector('div.map--restaurant-details') as HTMLElement;
+
+		if (restaurantDetails.style.display === 'flex') {
+			footer.classList.add('hide');
+		}
+	}
+
 	return (
 				<APIProvider apiKey={API_KEY} libraries={['marker']}>
 					<Map
@@ -41,7 +50,12 @@ function MapComponent() {
 								<Marker
 										position={marker}
 										clickable={true}
-										onClick={() => setRestaurantDetails(!restaurantDetails)}
+										onClick={() => {
+											setRestaurantDetails(!restaurantDetails);
+											setTimeout(() => {
+												hideFooter();
+											}, 1);
+										}}
 										title={'clickable google.maps.Marker'}
 								/>
 						))}

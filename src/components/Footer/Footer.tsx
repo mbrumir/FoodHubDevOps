@@ -2,22 +2,67 @@ import React from 'react';
 import { Footer } from 'react-bulma-components';
 import './Footer.css';
 
+// function showInfoModal () {
+// 	const body = document.querySelector('body') as HTMLElement;
+// 	const modal = document.querySelector('div.info_modal') as HTMLElement;
+
+// 	modal.style.display="block";
+// 	setTimeout(() => {
+// 		body.classList.add('show-info-modal');
+// 	}, 1)
+// }
+
+// function supportUs () {
+// 	const body = document.querySelector('body') as HTMLElement;
+// 	const modal = document.querySelector('div.info_modal') as HTMLElement;
+
+// 	modal.style.display="block";
+// 	setTimeout(() => {
+// 		body.classList.add('support-us');
+// 	}, 1)
+// }
+
+function handleModals (e: React.MouseEvent<HTMLElement, MouseEvent>) {
+	const target = e.target as HTMLElement;
+	const modalToShow = target.classList.value;
+	
+	const body = document.querySelector('body') as HTMLElement;
+	const footer = document.querySelector('footer') as HTMLElement;
+	const modal = document.querySelector(`div.${modalToShow}`) as HTMLElement;
+
+	modal.style.display='block';
+	setTimeout(() => {
+		body.classList.add(`${modalToShow}`);
+		footer.classList.add('hide');
+	}, 1)
+}
+
 function FooterBottom() {
 	return (
 			<Footer
 				textColor={"white"}
 				backgroundColor={"black"}
-				display={"flex"}
-				justifyContent={"center"}
 				alignItems={"center"}
 			>
 
-			<a href="mailto:contact@devkids.app">
+			<div className="support">
+				<a target='_blank' rel="noreferrer" href="https://www.buymeacoffee.com/foodhubapp">Wesprzyj nas!</a>
+			</div>
+
+			<div className="footer-menu">
+				<ul>
+					<li onClick={e => handleModals(e)} className='show-info-modal'>O projekcie</li>
+					<li onClick={e => handleModals(e)} className='show-bug-form'>Zgłoś błąd</li>
+					<li onClick={e => handleModals(e)} className='show-contact-form'>Kontakt</li>
+				</ul>
+			</div>
+
+			<a href="mailto:contact@devkids.app" className='logo'>
 				<div className='text-container'>
 					<p className='devkid' style={{color: "white", fontWeight: 500}}>
 							Made by DevKids
 					</p>
-					<p className='contact' style={{color: "white", fontWeight: 500}}>
+					<p className='contact' style={{fontWeight: 500}}>
 							Współpraca
 					</p>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
