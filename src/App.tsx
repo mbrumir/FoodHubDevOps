@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 import '../src/components/scss/App.css';
 import { Columns } from 'react-bulma-components';
 import NavbarTop from "./components/Navbar/Navbar";
@@ -33,7 +33,7 @@ function App() {
           </Columns>
         </div>
         <FooterBottom />
-        <Helmet><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script></Helmet>
+        {/* <Helmet><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script></Helmet> */}
       </>
   );
 }

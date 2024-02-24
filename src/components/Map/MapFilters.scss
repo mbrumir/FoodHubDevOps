@@ -10,6 +10,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    z-index: 1;
 
     &::-webkit-scrollbar {
       height: 5px;

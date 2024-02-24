@@ -1,6 +1,7 @@
 @import '../scss/variables';
 
 .map--restaurant-details {
+    display: none;
     position: absolute;
     top: 30px;
     right: 30px;
@@ -13,7 +14,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        max-width: 500px;
+        width: 100%;
+        max-width: 450px;
         font-family: $family-content;
         border-radius: 0 10px 10px 10px;
 
@@ -39,6 +41,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            gap: 15px;
 
             img {
                 border-radius: 10px;
@@ -52,7 +55,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
                 width: 100%;
                 max-width: 300px;
 
@@ -60,7 +63,7 @@
                     h2 {
                         font-size: 1.5rem;
                         font-family: $family-title;
-                        text-align: center;
+                        text-align: left;
                         line-height: 1.8rem;
                         -webkit-line-clamp: 2;
                         line-clamp: 2;
@@ -72,7 +75,7 @@
                     span {
                         display: block;
                         width: 100%;
-                        text-align: center;
+                        text-align: left;
                         font-size: .7rem;
                         margin-top: -5px;
                         font-family: $family-title;
@@ -87,15 +90,42 @@
 
                     &--stars_container {
                         svg {
-                            color: rgb(239, 147, 26);
+                            color: rgba(239, 147, 26, .2);
+                        }
 
-                            &:last-child {
-                                color: rgba(239, 147, 26, .2);
+                        &.one {
+                            svg:nth-child(1) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.two {
+                            svg:nth-child(1), svg:nth-child(2) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.three {
+                            svg:nth-child(1), svg:nth-child(2), svg:nth-child(3) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.four {
+                            svg:nth-child(1), svg:nth-child(2), svg:nth-child(3), svg:nth-child(4) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.five {
+                            svg {
+                                color: rgb(239, 147, 26);
                             }
                         }
                     }
 
                     p {
+                        width: 100%;
                         font-family: $family-title;
                         font-size: .75rem;
                     }
@@ -107,6 +137,40 @@
                 justify-content: center;
                 align-items: center;
                 gap: 2px;
+
+                svg {
+                    color: rgba(239,147,26,.2);
+                }
+
+                &.one {
+                    svg:nth-child(1) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.two {
+                    svg:nth-child(1), svg:nth-child(2) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.three {
+                    svg:nth-child(1), svg:nth-child(2), svg:nth-child(3) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.four {
+                    svg:nth-child(1), svg:nth-child(2), svg:nth-child(3), svg:nth-child(4) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.five {
+                    svg {
+                        color: #ef931a;
+                    }
+                }
             }
         }
 
@@ -132,6 +196,7 @@
         }
 
         .creator-rating {
+            width: 100%;
             margin-bottom: 10px;
 
             p {
@@ -245,5 +310,79 @@
         right: unset;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 1;
+    }
+}
+
+.map--restaurant-details.placeholder {
+    .box {
+        .header {
+            justify-content: flex-start;
+
+            &__img_placeholder {
+                width: 80px;
+                height: 80px;
+                @include placeholder;
+            }
+
+            &__content {
+                width: 30%;
+
+                &__name {
+                    width: 100%;
+
+                    &--title {
+                        width: 100%;
+                        height: 20px;
+                        margin-bottom: 10px;
+                        @include placeholder;
+                    }
+
+                    &--reviews {
+                        width: 50%;
+                        height: 10px;
+                        margin: 0 auto;
+                        border-radius: 5px;
+                        @include placeholder;
+                    }
+                }
+
+                &__opinions {
+                    span {
+                        width: 100%;
+                        height: 10px;
+                        margin: 10px 0;
+                        @include placeholder;
+                    }
+                }
+            }
+        }
+
+        .restaurant-info {
+            &__address, &__phone, &__website, &__delivery {
+                width: 100%;
+                height: 20px;
+                margin: 10px 0;
+                @include placeholder;
+            }
+        }
+
+        .creator-rating {
+            width: 100%;
+            margin-bottom: 10px;
+
+            div {
+                width: 100%;
+                height: 65px;
+                @include placeholder;
+            }
+        }
+
+        .video_placeholder {
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            @include placeholder;
+        }
     }
 }

@@ -35,7 +35,7 @@ function Info() {
                     <h2>Wsparcie</h2>
                     <p>Samodzielnie opłacamy serwery, licencje oraz domenę potrzebne do stworzenia tego projektu. Na projekcie nie planujemy zarabiać ani umieszczać reklam, abyście mogli cieszyć się czystą, wolną od reklam stroną. Naszym celem jest rozwinięcie projektu, dodanie wiekszej ilości twórców, stworzenie dedykowanej aplikacji oraz wprowadzenie nowych funkcji, takich jak wyszukiwanie restaruacji w okolicy.</p>
                     <p>Jeśli chcecie wesprzeć naszą pracę i przyczynić się do rozwoju projektu, możecie wesprzeć nas finansowo.<br /> Za każdą złotówkę serdecznie dziękujemy! ❤️</p>
-                    <a href='https://www.buymeacoffee.com/foodhubapp'>Buy me a coffee</a>
+                    <a target="_blank" rel="noreferrer" href='https://www.buymeacoffee.com/foodhubapp'>Buy me a coffee</a>
                 </section>
                 <span onClick={closeInfoModal} className="close_btn"><FontAwesomeIcon icon={faXmark}/></span>
             </div>

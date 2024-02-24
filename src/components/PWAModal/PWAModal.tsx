@@ -47,11 +47,11 @@ const PWAModal: React.FC = () => {
             <h2>Zainstaluj aplikację</h2>
             <p>Chcesz zainstalować aplikację FoodHub na swoim urządzeniu?</p>
             <div className="pwa_modal__modal-content__buttons">
-                <button className="pwa_modal__modal-content__buttons--accept_btn" onClick={handleInstallClick}>
-                Zainstaluj
-                </button>
                 <button className="pwa_modal__modal-content__buttons--cancel_btn" onClick={handleDeclineClick}>
                 Odrzuć
+                </button>
+                <button className="pwa_modal__modal-content__buttons--accept_btn" onClick={handleInstallClick}>
+                Zainstaluj
                 </button>
             </div>
           </div>

@@ -3,11 +3,12 @@ import React, {useState} from 'react';
 // import { collection, addDoc } from "@firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { functions } from '../../firebase';
-import { httpsCallable } from '@firebase/functions';
+// import { functions } from '../../firebase';
+// import { httpsCallable } from '@firebase/functions';
 import './ContactForm.css';
 
-const verifyTurnstileToken = httpsCallable(functions, 'verifyTurnstileToken');
+
+// const verifyToken = httpsCallable(functions, 'verifyTurnstileToken');
 
 function closeForm () {
     const body = document.querySelector('body') as HTMLElement;
@@ -82,10 +83,10 @@ function ContactForm() {
             // setMessage('');
             // setErrorMessage('');
 
-            verifyTurnstileToken().then((result) => {
-                console.log(result);
-                showMessageModal(`show-success-modal`);
-            });
+            // verifyToken().then((result) => {
+            //     console.log(result);
+            //     showMessageModal(`show-success-modal`);
+            // });
 
         } catch (error) {
             console.error('Error adding document: ', error);
@@ -96,7 +97,7 @@ function ContactForm() {
 	return (
     <>
         <div className='form-container show-contact-form'>
-            <form className='form' onSubmit={handleSubmit} method="POST">
+            <form className='form' method="POST">
                 <h2>Skontaktuj się z nami!</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <div className='form-email'>
@@ -112,8 +113,8 @@ function ContactForm() {
                     <textarea name='description' id='description' required value={message} onChange={(e) => setMessage(e.target.value)}/>
                 </div>
                 <span onClick={closeForm} className="close_btn"><FontAwesomeIcon icon={faXmark}/></span>
-                <div className="cf-turnstile" data-sitekey="0x4AAAAAAASRXIzn5mKvkH1s"></div>
-                <button className="form_btn">Wyślij</button>
+                {/* <div className="cf-turnstile" data-sitekey="0x4AAAAAAASRXIzn5mKvkH1s" data-theme="light"></div> */}
+                <button onClick={handleSubmit} type="submit" className="form_btn">Wyślij</button>
             </form>
 
             <div className="form-container__background"></div>
