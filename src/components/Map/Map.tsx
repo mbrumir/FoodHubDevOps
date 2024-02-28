@@ -20,7 +20,6 @@ function MapComponent() {
 	const [markers, setMarkers] = useState<any[]>([]);
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
-	const [firstTime, setFisrtTime] = useState<any>(true);
 
 	const fetchData = async () => {
 		try {
@@ -29,6 +28,38 @@ function MapComponent() {
 					restaurantsCollection,
 					where("place", "!=", null)
 			);
+            			
+			switch (true) {
+				case filters.foodOption !== 'any' && filters.priceOption !== 'any':
+					q = query(
+						restaurantsCollection,
+						where("place.price_level", "==", parseInt(filters.priceOption)),
+						where("food_type", "==", filters.foodOption),
+						where("place", "!=", null)
+					);
+					break;
+					
+				case filters.foodOption !== 'any':
+					q = query(
+						restaurantsCollection,
+						where("place", "!=", null),
+						where("food_type", "==", filters.foodOption)
+						);
+						break;
+						
+				case filters.priceOption !== 'any':
+					// let priceOption = parseInt(filters.priceOption); // Konwertujemy opcję ceny na liczbę
+					// let maxPrice = priceOption + 0.5; // Określamy maksymalną cenę na podstawie opcji ceny
+					// Map.tsx:54 Error fetching data:  FirebaseError: Cannot have inequality filters on multiple properties: [place.price_level, place]
+					q = query(
+						restaurantsCollection,
+						where("place", "!=", null),
+						where("place.price_level", "==", parseInt(filters.priceOption)),
+						// where("place.price_level", "<", maxPrice)
+					);
+					break;
+			}
+
 			const typesSnapshot = await getDocs(q);
 			let restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
 			setRestaurants(restaurantsData);
@@ -133,20 +164,20 @@ function MapComponent() {
 		return (
 				<>
 					{points.map(point => (
-							<AdvancedMarker
-									position={point}
-									key={point.key}
-									ref={marker => setMarkerRef(marker, point.key)}
-									onClick={() => {
-										handleShowRestaurantDetails();
-										setRestaurantDetails(point.name);
-										setTimeout(() => {
-											hideFooter();
-										}, 1);
-									}}
-							>
-								<span className="tree">🌳</span>
-							</AdvancedMarker>
+                        <AdvancedMarker
+                            position={point}
+                            key={point.key}
+                            ref={marker => setMarkerRef(marker, point.key)}
+                            onClick={() => {
+                                handleShowRestaurantDetails();
+                                setRestaurantDetails(point.name);
+                                setTimeout(() => {
+                                    hideFooter();
+                                }, 1);
+                            }}
+                        >
+                            <span className="tree">🌳</span>
+                        </AdvancedMarker>
 					))}
 				</>
 		);
