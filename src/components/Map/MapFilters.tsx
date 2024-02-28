@@ -9,31 +9,31 @@ function handleGlobalClick (e: MouseEvent) {
 	const priceSelect = document.querySelector('.price-select') as HTMLElement;
 	const typeSelect = document.querySelector('.type-select') as HTMLElement;
 	const creatorSelect = document.querySelector('.creator-select') as HTMLElement;
-	
-	
+
+
 	const removeActiveSelects = () => {
 		const allActiveSelects = document.querySelectorAll('.active');
-		
+
 		allActiveSelects.forEach(select => {
 			select.classList.remove('active');
 		})
 	}
-	
+
 	if (target.closest('div')?.classList.contains('price-select')) {
 		priceSelect.classList.toggle('active');
 		typeSelect.classList.remove('active');
 		creatorSelect.classList.remove('active');
-		
+
 	} else if (target.closest('div')?.classList.contains('type-select')) {
 		typeSelect.classList.toggle('active');
 		priceSelect.classList.remove('active');
 		creatorSelect.classList.remove('active');
-		
+
 	} else if (target.closest('div')?.classList.contains('creator-select')) {
 		creatorSelect.classList.toggle('active');
 		priceSelect.classList.remove('active');
 		typeSelect.classList.remove('active');
-		
+
 	} else {
 		removeActiveSelects();
 	}
@@ -41,11 +41,11 @@ function handleGlobalClick (e: MouseEvent) {
 
 const creatorsOptions = {
 	Książulo: {
-		value: 'ksiazulo',
+		value: 'UCqJuMiGXqB8Hl41YsGV_sMA',
 		name: 'Książulo'
 	},
 	Wojek: {
-		value: 'wojek',
+		value: 'UC_1IqV4x5WCLdc6Qk1VMv0g',
 		name: 'Wojek'
 	},
 }
@@ -113,14 +113,14 @@ const priceOptions = {
 }
 
 function MapFilters({setFilters} : {setFilters: any}) {
-	const [creatorOption, setCreatorOptions] = useState([]);
-	const [foodOption, setFoodOptions] = useState([]);
-	const [priceOption, setPriceOptions] = useState([]);
+	const [creatorOption, setCreatorOptions] = useState('Twórcy');
+	const [foodOption, setFoodOptions] = useState('Rodzaj');
+	const [priceOption, setPriceOptions] = useState('Cena');
 
 	React.useEffect(() => {
 		document.addEventListener('click', handleGlobalClick);
 	})
-	
+
 	useEffect(() => {
         setFilters({ creatorOption, foodOption, priceOption });
     }, [creatorOption, foodOption, priceOption, setFilters]);

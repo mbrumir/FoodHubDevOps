@@ -7,8 +7,6 @@ import {
 	// Pin
 } from '@vis.gl/react-google-maps';
 
-import {MarkerClusterer} from '@googlemaps/markerclusterer';
-import type {Marker} from '@googlemaps/markerclusterer';
 import MapFilters from "./MapFilters";
 import MapObjectDetails from "./MapObjectDetails";
 import { db } from "../../firebase";
@@ -16,9 +14,14 @@ import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from
 
 const API_KEY = "AIzaSyButo3F2cEMH6mNiMGIhbqypnxY3YeMGq0";
 function MapComponent() {
+	const defaultFiters = {
+		creatorOption: 'any',
+		foodOption: 'any',
+		priceOption: 'any'
+	};
 	const [restaurants, setRestaurants] = useState<any[]>([]);
 	const [markers, setMarkers] = useState<any[]>([]);
-	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
+	const [filters, setFilters] = useState<any>(defaultFiters); // { creatorOption, foodOption, priceOption }
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 
 	function hideFooter() {
@@ -38,6 +41,27 @@ function MapComponent() {
 		}
 	}
 
+	const filterByFood = (arr: any[], food_type: string) => {
+		return arr.filter(function(obj) {
+					return obj.food_type === food_type;
+				}
+		)
+	}
+
+	const filterByPrice = (arr: any[], price_level: number) => {
+		return arr.filter(function(obj) {
+					return obj.place.price_level === price_level;
+				}
+		)
+	}
+
+	const filterByChannelId = (arr: any[], channel_id: string) => {
+		return arr.filter(function(obj) {
+					return obj.channelId === channel_id;
+				}
+		)
+	}
+
 	const fetchData = async () => {
 		try {
 			let restaurantsCollection = collection(db, "restaurants");
@@ -45,37 +69,6 @@ function MapComponent() {
 					restaurantsCollection,
 					where("place", "!=", null)
 			);
-            			
-			switch (true) {
-				case filters.foodOption !== 'any' && filters.priceOption !== 'any':
-					q = query(
-						restaurantsCollection,
-						where("place.price_level", "==", parseInt(filters.priceOption)),
-						where("food_type", "==", filters.foodOption),
-						where("place", "!=", null)
-					);
-					break;
-					
-				case filters.foodOption !== 'any':
-					q = query(
-						restaurantsCollection,
-						where("place", "!=", null),
-						where("food_type", "==", filters.foodOption)
-						);
-						break;
-						
-				case filters.priceOption !== 'any':
-					// let priceOption = parseInt(filters.priceOption); // Konwertujemy opcję ceny na liczbę
-					// let maxPrice = priceOption + 0.5; // Określamy maksymalną cenę na podstawie opcji ceny
-					// Map.tsx:54 Error fetching data:  FirebaseError: Cannot have inequality filters on multiple properties: [place.price_level, place]
-					q = query(
-						restaurantsCollection,
-						where("place", "!=", null),
-						where("place.price_level", "==", parseInt(filters.priceOption)),
-						// where("place.price_level", "<", maxPrice)
-					);
-					break;
-			}
 
 			const typesSnapshot = await getDocs(q);
 			let restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
@@ -97,7 +90,7 @@ function MapComponent() {
 					updated = new Date().getTime();
 				}
 
-				if (localUpdated != updated) {
+				if (localUpdated != updated || !localStorage.getItem('restaurants')) {
 					localStorage.setItem('updated', updated);
 					fetchData();
 				}
@@ -113,11 +106,29 @@ function MapComponent() {
 
 	useEffect(() => {
 		let localRestaurants = JSON.parse(localStorage.getItem('restaurants') as string);
+
 		if (localRestaurants) {
 			setRestaurants(localRestaurants);
 		} else {
 			fetchData();
 		}
+
+		let searchedRestaurants = JSON.parse(localStorage.getItem('restaurants') as string);
+		switch (true) {
+
+			case filters.foodOption !== 'Rodzaj':
+				searchedRestaurants = filterByFood(searchedRestaurants, filters.foodOption);
+				break;
+
+			case filters.priceOption !== 'Cena':
+				searchedRestaurants = filterByPrice(searchedRestaurants, parseInt(filters.priceOption));
+				break;
+
+			case filters.creatorOption !== 'Twórcy':
+				searchedRestaurants = filterByChannelId(searchedRestaurants, filters.creatorOption);
+				break;
+		}
+		setRestaurants(searchedRestaurants);
 	}, [filters]);
 
 	useEffect(() => {
@@ -142,6 +153,7 @@ function MapComponent() {
 					style={{position: "relative"}}
 					disableDefaultUI>
 				<MapFilters setFilters={setFilters}/>
+				<MapObjectDetails restaurantName={restaurantDetails}/>
 				{ markers.map((point, index) => (
 						<AdvancedMarker
 								position={point}
