@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {
-	// AdvancedMarker,
 	APIProvider,
 	Map,
-	Marker
+	useMap,
+	AdvancedMarker,
+	Marker,
 	// Pin
 } from '@vis.gl/react-google-maps';
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import MapFilters from "./MapFilters";
 import MapObjectDetails from "./MapObjectDetails";
 import { db } from "../../firebase";
@@ -17,26 +19,69 @@ function MapComponent() {
 	const [markers, setMarkers] = useState<any[]>([]);
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
+	const [firstTime, setFisrtTime] = useState<any>(true);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				let restaurantsCollection = collection(db, "restaurants");
-				let q = query(
-					restaurantsCollection,
-					where("place", "!=", null)
+        const storedRestaurants = localStorage.getItem('restaurants');
+        if (storedRestaurants && firstTime === true) {
+            setRestaurants(JSON.parse(storedRestaurants));
+			setFisrtTime(false);
+        } else {
+			fetchData();
+		}
+    }, [filters]);
+
+	
+	const fetchData = async () => {
+		try {
+			let restaurantsCollection = collection(db, "restaurants");
+			let q = query(
+				restaurantsCollection,
+				where("place", "!=", null)
+				);
+			
+			switch (true) {
+				case filters.foodOption !== 'any' && filters.priceOption !== 'any':
+					q = query(
+						restaurantsCollection,
+						where("place.price_level", "==", parseInt(filters.priceOption)),
+						where("food_type", "==", filters.foodOption),
+						where("place", "!=", null)
 					);
+					break;
+					
+				case filters.foodOption !== 'any':
+					q = query(
+						restaurantsCollection,
+						where("place", "!=", null),
+						where("food_type", "==", filters.foodOption)
+						);
+						break;
+						
+				case filters.priceOption !== 'any':
+					// let priceOption = parseInt(filters.priceOption); // Konwertujemy opcję ceny na liczbę
+					// let maxPrice = priceOption + 0.5; // Określamy maksymalną cenę na podstawie opcji ceny
+					// Map.tsx:54 Error fetching data:  FirebaseError: Cannot have inequality filters on multiple properties: [place.price_level, place]
+					q = query(
+						restaurantsCollection,
+						where("place", "!=", null),
+						where("place.price_level", "==", parseInt(filters.priceOption)),
+						// where("place.price_level", "<", maxPrice)
+					);
+					break;
 
-				const typesSnapshot = await getDocs(q);
-				setRestaurants(typesSnapshot.docs.map((doc) => doc.data()));
-			} catch (error) {
-				console.error("Error fetching data: ", error);
 			}
-		};
 
-		fetchData();
-	}, [filters]);
+			const typesSnapshot = await getDocs(q);
+			const restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
+			setRestaurants(restaurantsData);
+			localStorage.setItem('restaurants', JSON.stringify(restaurantsData));
 
+		} catch (error) {
+			console.error("Error fetching data: ", error);
+		}
+	};
+	
 	useEffect(() => {
 		const markers = restaurants.map((restaurant) => {
 			return {
@@ -53,7 +98,7 @@ function MapComponent() {
 		const footer = document.querySelector('footer') as HTMLElement;
 		const restaurantDetails = document.querySelector('div.map--restaurant-details') as HTMLElement;
 		
-		if (restaurantDetails && restaurantDetails.style.display === 'flex') {
+		if (restaurantDetails && restaurantDetails.style.display === 'block') {
 			footer.classList.add('hide');
 		}
 	}
@@ -62,7 +107,7 @@ function MapComponent() {
 		const modal = document.querySelector('div.map--restaurant-details') as HTMLElement;
 
 		if (modal) {
-			modal.style.display="flex";
+			modal.style.display="block";
 		}
 	}
 
@@ -91,10 +136,9 @@ function MapComponent() {
 						title={marker.name}
 					/>
 				))}
-				{/* simple marker */}
 			</Map>
 		</APIProvider>
 	);
-};
+}
 
 export default MapComponent;
