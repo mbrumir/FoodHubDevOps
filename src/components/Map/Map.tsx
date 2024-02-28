@@ -15,10 +15,15 @@ import { db } from "../../firebase";
 import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from "@firebase/firestore";
 
 const API_KEY = "AIzaSyButo3F2cEMH6mNiMGIhbqypnxY3YeMGq0";
-function MapComponent() {
-	const [restaurants, setRestaurants] = useState<any[]>([]);
-	const [markers, setMarkers] = useState<any[]>([]);
-	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
+
+
+
+type Props = {points: any[]};
+
+const Markers = ({points} : Props) => {
+	const map = useMap();
+	const [markers, setMarkers] = useState<{[key: string]: Marker}>({});
+	const clusterer = useRef<MarkerClusterer | null>(null);
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 
 	function hideFooter() {
@@ -37,6 +42,63 @@ function MapComponent() {
 			modal.style.display="flex";
 		}
 	}
+
+	// Initialize MarkerClusterer
+	useEffect(() => {
+		console.log(123);
+		if (!map) return;
+		if (!clusterer.current) {
+			clusterer.current = new MarkerClusterer({map});
+		}
+	}, [map]);
+
+	// Update markers
+	useEffect(() => {
+		clusterer.current?.clearMarkers();
+		clusterer.current?.addMarkers(Object.values(markers));
+	}, [markers]);
+
+	const setMarkerRef = (marker: Marker | null, key: string) => {
+		if (marker && markers[key]) return;
+		if (!marker && !markers[key]) return;
+
+		setMarkers(prev => {
+			if (marker) {
+				return {...prev, [key]: marker};
+			} else {
+				const newMarkers = {...prev};
+				delete newMarkers[key];
+				return newMarkers;
+			}
+		});
+	};
+
+	return (
+			<>
+				<MapObjectDetails restaurantName={restaurantDetails}/>
+				{points.map(point => (
+						<AdvancedMarker
+								position={point}
+								key={point.key}
+								ref={marker => setMarkerRef(marker, point.key)}
+								onClick={() => {
+									handleShowRestaurantDetails();
+									setRestaurantDetails(point.name);
+									setTimeout(() => {
+										hideFooter();
+									}, 1);
+								}}
+						>
+							<span className="tree">🌳</span>
+						</AdvancedMarker>
+				))}
+			</>
+	);
+}
+function MapComponent() {
+	const [restaurants, setRestaurants] = useState<any[]>([]);
+	const [markers, setMarkers] = useState<any[]>([]);
+	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
 
 	const fetchData = async () => {
 		try {
@@ -142,21 +204,21 @@ function MapComponent() {
 					style={{position: "relative"}}
 					disableDefaultUI>
 				<MapFilters setFilters={setFilters}/>
-				{ markers.map((point, index) => (
-						<AdvancedMarker
-								position={point}
-								key={point.key}
-								onClick={() => {
-									handleShowRestaurantDetails();
-									setRestaurantDetails(point.name);
-									setTimeout(() => {
-										hideFooter();
-									}, 1);
-								}}
-						>
-							<span className="tree">🌳</span>
-						</AdvancedMarker>
-				))}
+				<Markers points={markers} />
+				{/*{ markers.map((marker, index) => (*/}
+				{/*	<Marker*/}
+				{/*		position={marker}*/}
+				{/*		clickable={true}*/}
+				{/*		onClick={() => {*/}
+				{/*			handleShowRestaurantDetails();*/}
+				{/*			setRestaurantDetails(marker.name);*/}
+				{/*			setTimeout(() => {*/}
+				{/*				hideFooter();*/}
+				{/*			}, 1);*/}
+				{/*		}}*/}
+				{/*		title={marker.name}*/}
+				{/*	/>*/}
+				{/*))}*/}
 				{/*/!* simple marker *!/*/}
 			</Map>
 		</APIProvider>

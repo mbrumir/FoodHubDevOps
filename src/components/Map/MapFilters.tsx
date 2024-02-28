@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import BasicSelect  from '../Select/Select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import './MapFilters.css';
 
 
@@ -92,30 +94,30 @@ const foodOptions = {
 const priceOptions = {
 	1: {
 		value: '1',
-		name: '1'
+		name: '$'
 	},
 	2: {
 		value: '2',
-		name: '2'
+		name: '$$'
 	},
 	3: {
 		value: '3',
-		name: '3'
+		name: '$$$'
 	},
 	4: {
 		value: '4',
-		name: '4'
+		name: '$$$$'
 	},
 	5: {
 		value: '5',
-		name: '5'
+		name: '$$$$$'
 	},
 }
 
 function MapFilters({setFilters} : {setFilters: any}) {
-	const [creatorOption, setCreatorOptions] = useState([]);
-	const [foodOption, setFoodOptions] = useState([]);
-	const [priceOption, setPriceOptions] = useState([]);
+	const [creatorOption, setCreatorOptions] = useState('any');
+	const [foodOption, setFoodOptions] = useState('any');
+	const [priceOption, setPriceOptions] = useState('any');
 
 	React.useEffect(() => {
 		document.addEventListener('click', handleGlobalClick);
