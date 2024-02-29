@@ -10,9 +10,9 @@ const BasicSelect = (props: any) => {
 
     return (
         <div className={`select ${props.class}`}>
-            <select defaultValue={`${props.title}`} onChange={handleSelectChange}>
+            <select defaultValue={props.title} onChange={handleSelectChange}>
 
-                <option value={`${props.title}`}>{props.title}</option>
+                <option value={props.title}>{props.title}</option>
 
                 {props.options.map((option: any, index: any) => (
                     <option key={index} value={option.value}>{option.name}</option>

@@ -6,17 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { faCarSide } from '@fortawesome/free-solid-svg-icons'
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import './MapObjectDetails.css';
 
 function MapObjectDetails(restaurantName: any) {
 	const [restaurant, setRestaurant] = useState<any[]>([]);
 	const [starsNumber, setStarsNumber] = useState<any>('');
 	const [dolarsNumber, setDolarsNumber] = useState<any>('');
+	const [aiInfoShow, setAiInfoShow] = useState<any>(false);
+	const [deliveryInfo, setDeliveryInfo] = useState<any>(false);
 
 	function handleCloseModal(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
 		const target = e.target as HTMLElement;
@@ -116,11 +118,42 @@ function MapObjectDetails(restaurantName: any) {
 		dollars();
 	}, [restaurant]);
 
+	useEffect(() => {
+		setDeliveryInfo(false);
+		const delivery = async () => {
+			try {
+				if (restaurant[0]?.place?.types.includes('meal_delivery')) {
+					setDeliveryInfo(true);
+				}
+			} catch (error) {
+				console.error("Error fetching data: ", error);
+			}
+		}
+
+		delivery();
+	}, [restaurant]);
+
+	useEffect(() => {
+		const info = document.querySelector('.ai_info__modal') as HTMLElement;
+		
+		if (info) {
+			aiInfoShow ? info.style.transform = 'scale(1)' : info.style.transform = 'scale(0)';
+		}
+
+	}, [aiInfoShow]);
+
 	return (
 		<>
 		{restaurant[0] ? (
 			<div className={'map--restaurant-details'}>
 				<Box>
+					<div className="ai_info">
+						<span 
+						onMouseEnter={() => setAiInfoShow(true)}
+						onMouseLeave={() => setAiInfoShow(false)}>
+						<FontAwesomeIcon icon={faCircleInfo}/></span>
+						<p className="ai_info__modal"><strong>Uwaga!</strong> Informacje o restauracjach, opinie oraz słowa Youtubera przedstawione na tej mapie zostały przetworzone przez sztuczną inteligencję. W związku z tym mogą występować pewne nieścisłości lub różnice w rzeczywistości. Zalecamy potwierdzenie wszelkich istotnych szczegółów bezpośrednio z restauracją przed planowaną wizytą.</p>
+					</div>
 					<div className="header">
 						<img src="https://cdn.aniagotuje.com/pictures/articles/2023/07/45574163-v-1500x1500.jpg" alt="zdjęcie z restauracji" width="80px" height="80px"></img>
 
@@ -153,34 +186,48 @@ function MapObjectDetails(restaurantName: any) {
 					</div>
 
 					<div className="restaurant-info">
-						<div className="restaurant-info__delivery">
-							<FontAwesomeIcon icon={faCarSide}/>
-							<span>Możliwa dostawa</span>
-						</div>
-
-						<div className="restaurant-info__phone">
-							<FontAwesomeIcon icon={faPhone}/>
-							<span>501 203 340</span>
-						</div>
-
-						<div className="restaurant-info__website">
-							<FontAwesomeIcon icon={faGlobe}/>
-							<a href="google.com">www.kebsikdrwal.pl</a>
-						</div>
-
 						<div className="restaurant-info__address">
 							<FontAwesomeIcon icon={faLocationDot}/>
 							<span>
-							{restaurant[0]?.location?.street && restaurant[0]?.location?.street !== 'false' && `${restaurant[0]?.location?.street} `}
+							{/* {restaurant[0]?.location?.street && restaurant[0]?.location?.street !== 'false' && `${restaurant[0]?.location?.street} `}
 							{restaurant[0]?.location?.street_number && restaurant[0]?.location?.street_number !== 'false' && `${restaurant[0]?.location?.street_number}, `}
-							{restaurant[0]?.location?.city && restaurant[0]?.location?.city !== 'false' && `${restaurant[0]?.location?.city}`}
+							{restaurant[0]?.location?.city && restaurant[0]?.location?.city !== 'false' && `${restaurant[0]?.location?.city}`} */}
+							{restaurant[0]?.place?.formatted_address}
 							</span>
 						</div>
+
+						<div className="restaurant-info__google">
+							<FontAwesomeIcon icon={faGlobe}/>
+							<a target="_blank" rel="noreferrer" href={`https://www.google.com/maps/search/?api=1&query=${restaurant[0]?.place?.name}&query_place_id=${restaurant[0]?.place?.place_id}&query=${restaurant[0]?.place?.geometry?.location?.lat}+${restaurant[0]?.place?.geometry?.location?.lng}`}>Zobacz na Google</a>
+						</div>
+
+						<div className={`restaurant-info__delivery ${deliveryInfo}`}>
+							<FontAwesomeIcon icon={faCarSide}/>
+							<span className="delivery">Możliwa dostawa</span>
+							<span className="no_delivery">brak dostawy</span>
+						</div>
+
 
 					</div>
 
 					<div className="creator-rating">
-						<p>Opinia twórcy</p>
+						<p>Opinia twórcy o jedzeniu</p>
+						<div>
+						<FontAwesomeIcon icon={faQuoteRight}/>
+						<span>{restaurant[0]?.food_review}</span>
+						</div>
+					</div>
+
+					<div className="creator-rating">
+						<p>Opinia twórcy o miejscu</p>
+						<div>
+						<FontAwesomeIcon icon={faQuoteRight}/>
+						<span>{restaurant[0]?.place_review}</span>
+						</div>
+					</div>
+
+					<div className="creator-rating">
+						<p>Ogólna opinia twórcy</p>
 						<div>
 						<FontAwesomeIcon icon={faQuoteRight}/>
 						<span>{restaurant[0]?.review}</span>
@@ -218,18 +265,18 @@ function MapObjectDetails(restaurantName: any) {
 						<span></span>
 					</div>
 
-					<div className="restaurant-info__phone">
-						<span></span>
-					</div>
-
-					<div className="restaurant-info__website">
-						<span></span>
-					</div>
-
 					<div className="restaurant-info__address">
 						<span></span>
 					</div>
 
+				</div>
+
+				<div className="creator-rating">
+					<div></div>
+				</div>
+
+				<div className="creator-rating">
+					<div></div>
 				</div>
 
 				<div className="creator-rating">

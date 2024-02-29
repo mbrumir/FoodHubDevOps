@@ -1,29 +1,27 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
 	APIProvider,
 	Map,
-	useMap,
 	AdvancedMarker
 	// Pin
 } from '@vis.gl/react-google-maps';
 
-import {MarkerClusterer} from '@googlemaps/markerclusterer';
-import type {Marker} from '@googlemaps/markerclusterer';
 import MapFilters from "./MapFilters";
 import MapObjectDetails from "./MapObjectDetails";
 import { db } from "../../firebase";
 import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from "@firebase/firestore";
+import './Map.css';
 
 const API_KEY = "AIzaSyButo3F2cEMH6mNiMGIhbqypnxY3YeMGq0";
-
-
-
-type Props = {points: any[]};
-
-const Markers = ({points} : Props) => {
-	const map = useMap();
-	const [markers, setMarkers] = useState<{[key: string]: Marker}>({});
-	const clusterer = useRef<MarkerClusterer | null>(null);
+function MapComponent() {
+	const defaultFiters = {
+		creatorOption: 'any',
+		foodOption: 'any',
+		priceOption: 'any'
+	};
+	const [restaurants, setRestaurants] = useState<any[]>([]);
+	const [markers, setMarkers] = useState<any[]>([]);
+	const [filters, setFilters] = useState<any>(defaultFiters); // { creatorOption, foodOption, priceOption }
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 
 	function hideFooter() {
@@ -43,62 +41,26 @@ const Markers = ({points} : Props) => {
 		}
 	}
 
-	// Initialize MarkerClusterer
-	useEffect(() => {
-		console.log(123);
-		if (!map) return;
-		if (!clusterer.current) {
-			clusterer.current = new MarkerClusterer({map});
-		}
-	}, [map]);
+	const filterByFood = (arr: any[], food_type: string) => {
+		return arr.filter(function(obj) {
+					return obj.food_type === food_type;
+				}
+		)
+	}
 
-	// Update markers
-	useEffect(() => {
-		clusterer.current?.clearMarkers();
-		clusterer.current?.addMarkers(Object.values(markers));
-	}, [markers]);
+	const filterByPrice = (arr: any[], price_level: number) => {
+		return arr.filter(function(obj) {
+					return obj.place.price_level === price_level;
+				}
+		)
+	}
 
-	const setMarkerRef = (marker: Marker | null, key: string) => {
-		if (marker && markers[key]) return;
-		if (!marker && !markers[key]) return;
-
-		setMarkers(prev => {
-			if (marker) {
-				return {...prev, [key]: marker};
-			} else {
-				const newMarkers = {...prev};
-				delete newMarkers[key];
-				return newMarkers;
-			}
-		});
-	};
-
-	return (
-			<>
-				<MapObjectDetails restaurantName={restaurantDetails}/>
-				{points.map(point => (
-						<AdvancedMarker
-								position={point}
-								key={point.key}
-								ref={marker => setMarkerRef(marker, point.key)}
-								onClick={() => {
-									handleShowRestaurantDetails();
-									setRestaurantDetails(point.name);
-									setTimeout(() => {
-										hideFooter();
-									}, 1);
-								}}
-						>
-							<span className="tree">🌳</span>
-						</AdvancedMarker>
-				))}
-			</>
-	);
-}
-function MapComponent() {
-	const [restaurants, setRestaurants] = useState<any[]>([]);
-	const [markers, setMarkers] = useState<any[]>([]);
-	const [filters, setFilters] = useState<any>({}); // { creatorOption, foodOption, priceOption }
+	const filterByChannelId = (arr: any[], channel_id: string) => {
+		return arr.filter(function(obj) {
+					return obj.channelId === channel_id;
+				}
+		)
+	}
 
 	const fetchData = async () => {
 		try {
@@ -107,37 +69,6 @@ function MapComponent() {
 					restaurantsCollection,
 					where("place", "!=", null)
 			);
-            			
-			switch (true) {
-				case filters.foodOption !== 'any' && filters.priceOption !== 'any':
-					q = query(
-						restaurantsCollection,
-						where("place.price_level", "==", parseInt(filters.priceOption)),
-						where("food_type", "==", filters.foodOption),
-						where("place", "!=", null)
-					);
-					break;
-					
-				case filters.foodOption !== 'any':
-					q = query(
-						restaurantsCollection,
-						where("place", "!=", null),
-						where("food_type", "==", filters.foodOption)
-						);
-						break;
-						
-				case filters.priceOption !== 'any':
-					// let priceOption = parseInt(filters.priceOption); // Konwertujemy opcję ceny na liczbę
-					// let maxPrice = priceOption + 0.5; // Określamy maksymalną cenę na podstawie opcji ceny
-					// Map.tsx:54 Error fetching data:  FirebaseError: Cannot have inequality filters on multiple properties: [place.price_level, place]
-					q = query(
-						restaurantsCollection,
-						where("place", "!=", null),
-						where("place.price_level", "==", parseInt(filters.priceOption)),
-						// where("place.price_level", "<", maxPrice)
-					);
-					break;
-			}
 
 			const typesSnapshot = await getDocs(q);
 			let restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
@@ -159,7 +90,7 @@ function MapComponent() {
 					updated = new Date().getTime();
 				}
 
-				if (localUpdated != updated) {
+				if (localUpdated !== updated || !localStorage.getItem('restaurants')) {
 					localStorage.setItem('updated', updated);
 					fetchData();
 				}
@@ -175,11 +106,28 @@ function MapComponent() {
 
 	useEffect(() => {
 		let localRestaurants = JSON.parse(localStorage.getItem('restaurants') as string);
+
 		if (localRestaurants) {
 			setRestaurants(localRestaurants);
 		} else {
 			fetchData();
 		}
+
+		let searchedRestaurants = JSON.parse(localStorage.getItem('restaurants') as string);
+
+			if (filters.foodOption !== 'Rodzaj') {
+				searchedRestaurants = filterByFood(searchedRestaurants, filters.foodOption);
+            }
+
+			if (filters.priceOption !== 'Cena') {
+				searchedRestaurants = filterByPrice(searchedRestaurants, parseInt(filters.priceOption));
+            }
+
+			if (filters.creatorOption !== 'Twórcy') {
+				searchedRestaurants = filterByChannelId(searchedRestaurants, filters.creatorOption);
+            }
+
+		setRestaurants(searchedRestaurants);
 	}, [filters]);
 
 	useEffect(() => {
@@ -188,7 +136,9 @@ function MapComponent() {
 				lat: restaurant.place.geometry.location.lat,
 				lng: restaurant.place.geometry.location.lng,
 				name: restaurant.place.name,
-				key: restaurant.updated
+				key: restaurant.updated,
+				type: restaurant.food_type,
+				creator: restaurant.channelId
 			}
 		});
 		setMarkers(markers);
@@ -204,21 +154,22 @@ function MapComponent() {
 					style={{position: "relative"}}
 					disableDefaultUI>
 				<MapFilters setFilters={setFilters}/>
-				<Markers points={markers} />
-				{/*{ markers.map((marker, index) => (*/}
-				{/*	<Marker*/}
-				{/*		position={marker}*/}
-				{/*		clickable={true}*/}
-				{/*		onClick={() => {*/}
-				{/*			handleShowRestaurantDetails();*/}
-				{/*			setRestaurantDetails(marker.name);*/}
-				{/*			setTimeout(() => {*/}
-				{/*				hideFooter();*/}
-				{/*			}, 1);*/}
-				{/*		}}*/}
-				{/*		title={marker.name}*/}
-				{/*	/>*/}
-				{/*))}*/}
+				<MapObjectDetails restaurantName={restaurantDetails}/>
+				{ markers.map((point, index) => (
+						<AdvancedMarker
+								position={point}
+								key={point.key}
+								onClick={() => {
+									handleShowRestaurantDetails();
+									setRestaurantDetails(point.name);
+									setTimeout(() => {
+										hideFooter();
+									}, 1);
+								}}
+						>
+							<span className={`${point.type} ${point.creator}`}></span>
+						</AdvancedMarker>
+				))}
 				{/*/!* simple marker *!/*/}
 			</Map>
 		</APIProvider>

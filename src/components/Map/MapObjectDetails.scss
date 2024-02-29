@@ -7,6 +7,7 @@
     right: 30px;
     justify-content: flex-end;
     width: 100vw;
+    max-width: 450px;
 
     .box {
         position: relative;
@@ -18,6 +19,7 @@
         max-width: 450px;
         font-family: $family-content;
         border-radius: 0 10px 10px 10px;
+        padding: 2.25rem 1.25rem 1.25rem 1.25rem;
 
         &::-webkit-scrollbar {
             width: 8px;
@@ -34,6 +36,59 @@
         
         svg {
             color: #ef931a;
+        }
+
+        div.ai_info {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            font-size: 20px;
+            padding: 5px 10px;
+
+            span {
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 5px 10px;
+                border-radius: 0 0 0 25px;
+                background-color: #fff;
+                z-index: 1;
+
+                @media (max-width: 640px) {
+                   right: unset;
+                   left: 0;
+                   border-radius: 0 0 25px 0;
+                }
+            }
+
+            p {
+                font-size: .8rem;
+                font-family: $family-content;
+                line-height: 1rem;
+                background-color: #ef931a;
+                color: #fff;
+                text-align: center;
+                padding: 10px 25px 10px 10px;
+                margin-top: 10px;
+                border-radius: 20px;
+                transform: scale(0);
+                transform-origin: right top;
+                transition: transform .3s ease-in-out;
+
+                strong {
+                    color: #fff;
+                }
+                
+                @media (max-width: 640px) {
+                   transform-origin: left top;
+                   padding: 10px 10px 10px 15px;
+                }
+
+                @media (max-width: 480px) {
+                    padding: 10px 10px 10px 30px;
+                    text-align: justify;
+                 }
+            }
         }
 
         .header {
@@ -186,10 +241,27 @@
                 margin-right: 5px;
             }
 
-            &__address, &__phone, &__website, &__delivery {
+            &__address, &__delivery, &__google {
                 max-width: 250px;
             }
 
+            &__delivery {
+                span {
+                    display: none;
+                }
+
+                &.false {
+                    span.no_delivery {
+                        display: inline-block;
+                    }
+                }
+
+                &.true {
+                    span.delivery {
+                        display: inline-block;
+                    }
+                }
+            }
             @media (max-width: 480px) {
                 grid-template-columns: auto;
             }
@@ -205,10 +277,10 @@
 
             div {
                 display: flex;
-                height: 65px;
+                height: 50px;
 
                 svg {
-                    margin-right: 5px;
+                    margin-right: 10px;
                 }
 
                 span {
@@ -277,7 +349,7 @@
 
         @media (max-width: 640px) {
             max-width: 440px;
-            padding: 2rem 1.25rem 1.25rem 1.25rem;
+            padding: 2.5rem 1.25rem 1.25rem 1.25rem;
             border-radius: 10px;
         }
 
@@ -302,7 +374,7 @@
     }
 
     @media (max-width: 992px) {
-        top: 100px;
+        top: 70px;
     }
 
     @media (max-width: 480px) {
@@ -359,7 +431,7 @@
         }
 
         .restaurant-info {
-            &__address, &__phone, &__website, &__delivery {
+            &__address, &__google, &__delivery {
                 width: 100%;
                 height: 20px;
                 margin: 10px 0;
