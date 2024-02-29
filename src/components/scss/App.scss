@@ -2927,7 +2927,7 @@ a.tag:hover {
 .radio input, .checkbox input {
   cursor: pointer;
 }
-.radio:hover, .checkbox:hover {
+.radio:hover {
   color: hsl(0, 0%, 21%);
 }
 [disabled].radio, [disabled].checkbox, fieldset[disabled] .radio, fieldset[disabled] .checkbox,

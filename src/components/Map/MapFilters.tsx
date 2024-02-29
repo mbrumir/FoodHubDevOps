@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Form } from 'react-bulma-components';
 import BasicSelect  from '../Select/Select';
 import './MapFilters.css';
 
@@ -88,6 +89,10 @@ const foodOptions = {
 		value: 'mexican',
 		name: 'Meksykańskie'
 	},
+	Greek: {
+		value: 'greek',
+		name: 'Greckie'
+	},
 }
 
 const priceOptions = {
@@ -117,31 +122,46 @@ function MapFilters({setFilters} : {setFilters: any}) {
 	const [creatorOption, setCreatorOptions] = useState('Twórcy');
 	const [foodOption, setFoodOptions] = useState('Rodzaj');
 	const [priceOption, setPriceOptions] = useState('Cena');
+	const [mualaOption, setMualaOption] = useState(false);
 
 	React.useEffect(() => {
 		document.addEventListener('click', handleGlobalClick);
 	})
 
 	useEffect(() => {
-        setFilters({ creatorOption, foodOption, priceOption });
-    }, [creatorOption, foodOption, priceOption, setFilters]);
+        setFilters({ creatorOption, foodOption, priceOption, mualaOption });
+    }, [creatorOption, foodOption, priceOption, mualaOption, setFilters]);
+
+	const handleMualaBtn = () => {
+		const mualaBtn = document.querySelector('.muala_btn') as HTMLElement;
+
+		if (mualaOption) {
+			setMualaOption(false);
+			mualaBtn.style.backgroundColor = 'white';
+			mualaBtn.style.color = '#363636';
+		} else {
+			setMualaOption(true);
+			mualaBtn.style.backgroundColor = '#ef931a';
+			mualaBtn.style.color = '#fff';
+		}
+	}
 
 	return (
 		<div className={'map--filters'}>
-			{/* <div>
-				<Form.Checkbox>MUALA</Form.Checkbox>
-			</div> */}
-			<div>
-				<BasicSelect class="creator-select" options={Object.values(creatorsOptions)} title="Twórcy" change={(value :any) => setCreatorOptions(value)}/>
-			</div>
+				<div className="muala_btn">
+					<Form.Checkbox onChange={handleMualaBtn}>MUALA</Form.Checkbox>
+				</div>
+				<div>
+					<BasicSelect class="creator-select" options={Object.values(creatorsOptions)} title="Twórcy" change={(value :any) => setCreatorOptions(value)}/>
+				</div>
 
-			<div>
-				<BasicSelect class="type-select" options={Object.values(foodOptions)} title="Rodzaj" change={(value :any) => setFoodOptions(value)} />
-			</div>
+				<div>
+					<BasicSelect class="type-select" options={Object.values(foodOptions)} title="Rodzaj" change={(value :any) => setFoodOptions(value)} />
+				</div>
 
-			<div>
-				<BasicSelect class="price-select" options={Object.values(priceOptions)} title="Cena" change={(value :any) => setPriceOptions(value)} />
-			</div>
+				<div>
+					<BasicSelect class="price-select" options={Object.values(priceOptions)} title="Cena" change={(value :any) => setPriceOptions(value)} />
+				</div>
 		</div>
 	);
 }

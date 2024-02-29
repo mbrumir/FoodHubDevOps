@@ -57,7 +57,7 @@ function FooterBottom() {
 				</ul>
 			</div>
 
-			<a href="mailto:contact@devkids.app" className='logo'>
+			<a href="https://devkids.app?source=foodhub" target="_blank" rel="noreferrer" className='logo'>
 				<div className='text-container'>
 					<p className='devkid' style={{color: "white", fontWeight: 500}}>
 							Made by DevKids

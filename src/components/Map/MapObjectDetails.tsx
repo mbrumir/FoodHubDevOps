@@ -142,6 +142,21 @@ function MapObjectDetails(restaurantName: any) {
 
 	}, [aiInfoShow]);
 
+	interface FoodType {
+		[key: string]: string;
+	}
+
+	const foodType: FoodType = {};
+	foodType['polish'] = 'polskie';
+	foodType['kebab'] = 'kebab';
+	foodType['italian'] = 'włoskie';
+	foodType['burger'] = 'burger';
+	foodType['milk_bar'] = 'bar mleczny';
+	foodType['dessert'] = 'desery';
+	foodType['asian'] = 'azjatyckie';
+	foodType['american'] = 'amerykańskie';
+	foodType['greek'] = 'greckie';
+
 	return (
 		<>
 		{restaurant[0] ? (
@@ -160,7 +175,7 @@ function MapObjectDetails(restaurantName: any) {
 						<div className="header__content">
 							<div className="header__content__name">
 								<h2 style={{ WebkitBoxOrient: 'vertical', boxOrient: 'vertical', display: '-webkit-box' }}>{restaurant[0]?.place?.name}</h2>	
-								<span>({restaurant[0]?.food_type})</span>
+								<span>({foodType[restaurant[0]?.food_type]})</span>
 							</div>
 
 							<div className="header__content__opinions">
@@ -202,9 +217,7 @@ function MapObjectDetails(restaurantName: any) {
 						</div>
 
 						<div className={`restaurant-info__delivery ${deliveryInfo}`}>
-							<FontAwesomeIcon icon={faCarSide}/>
-							<span className="delivery">Możliwa dostawa</span>
-							<span className="no_delivery">brak dostawy</span>
+							<span className="delivery"><FontAwesomeIcon icon={faCarSide}/> Możliwa dostawa</span>
 						</div>
 
 

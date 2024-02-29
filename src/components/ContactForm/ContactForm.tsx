@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-// import { db } from "../../firebase";
-// import { collection, addDoc } from "@firebase/firestore";
+import { db } from "../../firebase";
+import { collection, addDoc } from "@firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 // import { functions } from '../../firebase';
@@ -68,25 +68,20 @@ function ContactForm() {
         }
 
         try {
+            const newContactMessage = {
+                email: email,
+                title: title,
+                message: message,
+            }
 
-            // const newContactMessage = {
-            //     email: email,
-            //     title: title,
-            //     message: message,
-            // }
+            const bugsCollection = collection(db, 'contact');
+            await addDoc(bugsCollection, newContactMessage);
 
-            // const bugsCollection = collection(db, 'contact');
-            // await addDoc(bugsCollection, newContactMessage);
-
-            // setEmail('');
-            // setTitle('');
-            // setMessage('');
-            // setErrorMessage('');
-
-            // verifyToken().then((result) => {
-            //     console.log(result);
-            //     showMessageModal(`show-success-modal`);
-            // });
+            setEmail('');
+            setTitle('');
+            setMessage('');
+            setErrorMessage('');
+            showMessageModal(`show-success-modal`);
 
         } catch (error) {
             console.error('Error adding document: ', error);

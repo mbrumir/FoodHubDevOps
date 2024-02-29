@@ -8,6 +8,7 @@
     justify-content: flex-end;
     width: 100vw;
     max-width: 450px;
+    z-index: 1;
 
     .box {
         position: relative;
@@ -238,22 +239,18 @@
 
             svg {
                 width: 20px;
-                margin-right: 5px;
+                margin: 3px 5px 0 0;
             }
 
             &__address, &__delivery, &__google {
+                display: flex;
+                align-items: flex-start;
                 max-width: 250px;
             }
 
             &__delivery {
                 span {
                     display: none;
-                }
-
-                &.false {
-                    span.no_delivery {
-                        display: inline-block;
-                    }
                 }
 
                 &.true {
@@ -382,7 +379,6 @@
         right: unset;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 1;
     }
 }
 

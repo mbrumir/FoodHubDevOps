@@ -7,6 +7,7 @@ import {
 } from '@vis.gl/react-google-maps';
 
 import MapFilters from "./MapFilters";
+import PinsLegend from "../PinsLegend/PinsLegend"; 
 import MapObjectDetails from "./MapObjectDetails";
 import { db } from "../../firebase";
 import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from "@firebase/firestore";
@@ -17,7 +18,8 @@ function MapComponent() {
 	const defaultFiters = {
 		creatorOption: 'any',
 		foodOption: 'any',
-		priceOption: 'any'
+		priceOption: 'any',
+		mualaOption: false
 	};
 	const [restaurants, setRestaurants] = useState<any[]>([]);
 	const [markers, setMarkers] = useState<any[]>([]);
@@ -58,6 +60,13 @@ function MapComponent() {
 	const filterByChannelId = (arr: any[], channel_id: string) => {
 		return arr.filter(function(obj) {
 					return obj.channelId === channel_id;
+				}
+		)
+	}
+
+	const filterByMuala = (arr: any[], isMualla: boolean) => {
+		return arr.filter(function(obj) {
+					return obj.isMualla === isMualla;
 				}
 		)
 	}
@@ -127,6 +136,10 @@ function MapComponent() {
 				searchedRestaurants = filterByChannelId(searchedRestaurants, filters.creatorOption);
             }
 
+			if (filters.mualaOption) {
+				searchedRestaurants = filterByMuala(searchedRestaurants, filters.mualaOption);
+			}
+
 		setRestaurants(searchedRestaurants);
 	}, [filters]);
 
@@ -149,11 +162,13 @@ function MapComponent() {
 			<Map
 					mapId={'bf51a910020fa25a'}
 					defaultZoom={7}
+					minZoom={3}
 					defaultCenter={{lat: 52, lng: 19}}
 					gestureHandling={'greedy'}
 					style={{position: "relative"}}
 					disableDefaultUI>
 				<MapFilters setFilters={setFilters}/>
+				<PinsLegend></PinsLegend>
 				<MapObjectDetails restaurantName={restaurantDetails}/>
 				{ markers.map((point, index) => (
 						<AdvancedMarker
