@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# FoodHub - Mapa Gastronomiczna Polski
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## O Projekcie
 
-## Available Scripts
+Jesteśmy grupą zapalonych entuzjastów, którzy postanowili stworzyć interaktywną mapę z miejscami rekomendowanymi przez popularnych polskich youtuberów. Nasza misja to ułatwienie poszukiwań najlepszych restauracji oraz odkrywanie unikalnych kulinarnej oferty w różnych zakątkach Polski.
 
-In the project directory, you can run:
+### Jak to działa?
 
-### `npm start`
+Nasz projekt wykorzystuje sztuczną inteligencję do skanowania kanałów gastronomicznych na YouTube. Codziennie nasz algorytm sprawdza najnowsze filmy, a następnie wyszukuje wymienione w nich restauracje na Google Maps. Znalezione lokalizacje są następnie dodawane do naszej mapy, wzbogacane o krótkie opisy, wygenerowane przez sztuczną inteligencję, oparte na treści filmów.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Wsparcie
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Jesteśmy niezależnym projektem finansowanym ze środków własnych. Nie umieszczamy reklam na naszej stronie, abyście mogli cieszyć się czystą i pozbawioną zewnętrznych dystrybucji treścią. Naszym celem jest rozwój projektu poprzez dodawanie nowych twórców, tworzenie dedykowanej aplikacji mobilnej oraz wprowadzanie nowych funkcji, takich jak lokalne wyszukiwanie restauracji.
 
-### `npm test`
+Jeśli chciałbyś/aś wesprzeć naszą pracę i przyczynić się do dalszego rozwoju projektu, możesz wesprzeć nas finansowo. Każda złotówka będzie dla nas ogromnym wsparciem! ❤️
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Jak zbudować projekt?
 
-### `npm run build`
+1. Uruchom środowisko developerskie:
+    ```bash
+    npm start
+    ```
+2. Kompiluj projekt:
+    ```bash
+    gulp compile
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Adres Produkcyjny
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Strona projektu jest dostępna pod adresem [foodhub.devkids.app](https://foodhub.devkids.app).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Jak dodać YouTubera do Mapy?
 
-### `npm run eject`
+Jeśli znasz popularnego polskiego YouTubera związane z tematyką gastronomiczną, którego warto dodać do naszej mapy, skontaktuj się z nami pod adresem mailowym: [foodhub@devkids.app](mailto:foodhub@devkids.app).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
