@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Form } from 'react-bulma-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import BasicSelect  from '../Select/Select';
 import './MapFilters.css';
 
@@ -148,6 +150,9 @@ function MapFilters({setFilters} : {setFilters: any}) {
 
 	return (
 		<div className={'map--filters'}>
+				<div className="legend_btn">
+					<span><FontAwesomeIcon icon={faLocationDot}/></span>
+				</div>
 				<div className="muala_btn">
 					<Form.Checkbox onChange={handleMualaBtn}>MUALA</Form.Checkbox>
 				</div>

@@ -161,13 +161,13 @@ function MapObjectDetails(restaurantName: any) {
 		<>
 		{restaurant[0] ? (
 			<div className={'map--restaurant-details'}>
-				<Box>
+				<Box style={{overflowY: 'auto', overflowX: 'hidden'}}>
 					<div className="ai_info">
 						<span 
 						onMouseEnter={() => setAiInfoShow(true)}
 						onMouseLeave={() => setAiInfoShow(false)}>
 						<FontAwesomeIcon icon={faCircleInfo}/></span>
-						<p className="ai_info__modal"><strong>Uwaga!</strong> Informacje o restauracjach, opinie oraz słowa Youtubera przedstawione na tej mapie zostały przetworzone przez sztuczną inteligencję. W związku z tym mogą występować pewne nieścisłości lub różnice w rzeczywistości. Zalecamy potwierdzenie wszelkich istotnych szczegółów bezpośrednio z restauracją przed planowaną wizytą.</p>
+						<p className="ai_info__modal"><strong>Uwaga!</strong> Opinie recenzentów oraz informacje o restauracjach zostały przetworzone przez sztuczną inteligencję. Prosimy o weryfikacje przedstawionych na stronie informacji we własnym zakresie.</p>
 					</div>
 					<div className="header">
 						<img src="https://cdn.aniagotuje.com/pictures/articles/2023/07/45574163-v-1500x1500.jpg" alt="zdjęcie z restauracji" width="80px" height="80px"></img>

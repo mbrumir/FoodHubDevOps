@@ -76,8 +76,9 @@ function BugForm() {
             setTitle('');
             setDescription('');
             setErrorMessage('');
-
             showMessageModal(`show-success-modal`);
+            closeForm();
+            
         } catch (error) {
             console.error('Error adding document: ', error);
             showMessageModal(`show-fail-modal`);

@@ -10,6 +10,7 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import SuccessModal from "./components/SuccessModal/SuccessModal"; 
 import FailModal from "./components/FailModal/FailModal"; 
 import PWAModal from "./components/PWAModal/PWAModal"; 
+import FooterMobileModal from './components/FooterMobileModal/FooterMobileModal';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <PWAModal></PWAModal>
         <NavbarTop />
         <MapComponent />
+        <FooterMobileModal />
         <FooterBottom />
         {/* <Helmet><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script></Helmet> */}
       </>

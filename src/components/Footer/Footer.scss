@@ -20,6 +20,7 @@
         a {
             width: fit-content;
             padding: 1rem 1.5rem;
+            white-space: nowrap;
             cursor: pointer;
             transition: color .2s ease-in-out;
             color: #fff;
@@ -30,7 +31,7 @@
         }
 
         @media (max-width: 640px) {
-            grid-area: support;
+            display: none;
         }
     }
     
@@ -44,6 +45,7 @@
 
             li {
                 padding: 1rem 1.5rem;
+                white-space: nowrap;
                 cursor: pointer;
                 transition: color .2s ease-in-out;
 
@@ -63,14 +65,13 @@
         }
         
         @media (max-width: 640px) {
-            grid-area: menu;
+            display: none;
         }
     }
 
     a.logo {
         position: relative;
         display: flex;
-        justify-content: flex-end;
         align-items: center;
         width: 100%;
         max-width: 170px;
@@ -87,7 +88,7 @@
             justify-content: end;
             align-items: center;
             width: 100%;
-            max-width: 140px;
+            max-width: 125px;
             overflow: hidden;
             font-size: 1rem;
 
@@ -132,15 +133,39 @@
     
     @media (max-width: 640px) {
         grid-template-areas: 
-        "menu menu menu"
-        "support logo logo";
-        height: 115px;
+        "logo button";
+        grid-template-columns: auto auto;
         margin-bottom: -1px;
     }
 
     &.hide {
-        @media (max-width: 992px) {
-            transform: translateY(200px);
+        transform: translateY(200px);
+    }
+
+    button.show-footer-modal {
+        display: none;
+        grid-area: button;  
+        background: none;
+        border: none;
+        padding: 1.2rem 1rem;
+        cursor: pointer;
+
+        svg {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            pointer-events: none;
+            transition: color .3s ease-in-out;
+        }
+
+        &:hover {
+            svg {
+                color: #ef931a;
+            }
+        }
+
+        @media(max-width: 640px) {
+            display: grid;
         }
     }
 }

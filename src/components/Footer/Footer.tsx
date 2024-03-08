@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { Footer } from 'react-bulma-components';
 import './Footer.css';
 
@@ -30,7 +32,7 @@ function handleModals (e: React.MouseEvent<HTMLElement, MouseEvent>) {
 	const footer = document.querySelector('footer') as HTMLElement;
 	const modal = document.querySelector(`div.${modalToShow}`) as HTMLElement;
 
-	modal.style.display='block';
+	modal.style.display='flex';
 	setTimeout(() => {
 		body.classList.add(`${modalToShow}`);
 		footer.classList.add('hide');
@@ -72,6 +74,8 @@ function FooterBottom() {
 					</svg>
 				</div>
 			</a>
+
+			<button onClick={e => handleModals(e)} className="show-footer-modal"><FontAwesomeIcon icon={faBars}/></button>
 
 			</Footer>
 	);
