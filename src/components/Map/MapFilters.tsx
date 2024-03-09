@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Form } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import BasicSelect  from '../Select/Select';
 import './MapFilters.css';
 
@@ -134,6 +135,10 @@ function MapFilters({setFilters} : {setFilters: any}) {
         setFilters({ creatorOption, foodOption, priceOption, mualaOption });
     }, [creatorOption, foodOption, priceOption, mualaOption, setFilters]);
 
+	useEffect(() => {
+		showClearFiltersBtn();
+	}, [creatorOption, foodOption, priceOption, mualaOption]);
+
 	const handleMualaBtn = () => {
 		const mualaBtn = document.querySelector('.muala_btn') as HTMLElement;
 
@@ -148,13 +153,73 @@ function MapFilters({setFilters} : {setFilters: any}) {
 		}
 	}
 
+	const handlePinsLegend = (show: boolean) => {
+		const pinsLegend = document.querySelector('div.pins-legend') as HTMLElement;
+
+		if (show) {
+			pinsLegend.style.transform = 'translateX(0)';
+		} else {
+			pinsLegend.style.transform = 'translateX(-300px)';
+		}
+	}
+
+	const showClearFiltersBtn = () => {
+		const clearFilters = document.querySelector('div.clear_filters') as HTMLElement;
+	
+		if (creatorOption === 'Twórcy' && foodOption === 'Rodzaj' && priceOption === 'Cena' && !mualaOption) {
+			clearFilters.style.opacity = '0';
+			setTimeout(() => {
+				clearFilters.style.display = 'none';
+			}, 300);
+		} else {
+			clearFilters.style.display = 'flex';
+			setTimeout(() => {
+				clearFilters.style.opacity = '1';
+			}, 1);
+		}
+	};
+
+	const setDeafultFilters = () => {
+		if (mualaOption) {
+			setMualaOption(false);
+			const mualaBtn = document.querySelector('.muala_btn') as HTMLElement;
+			mualaBtn.style.backgroundColor = 'white';
+			mualaBtn.style.color = '#363636';
+		}
+
+		if (creatorOption !== 'Twórcy') {
+			const creatorSelectContainer = document.querySelector('.creator-select') as HTMLSelectElement;
+			const creatorSelect = creatorSelectContainer.querySelector('select') as HTMLSelectElement;
+
+			creatorSelect.value = 'Twórcy';
+			setCreatorOptions('Twórcy');
+		}
+
+		if (foodOption !== 'Rodzaj') {
+			const typeSelectContainer = document.querySelector('.type-select') as HTMLSelectElement;
+			const typeSelect = typeSelectContainer.querySelector('select') as HTMLSelectElement;
+
+			typeSelect.value = 'Rodzaj';
+			setFoodOptions('Rodzaj');
+		}
+
+		if (priceOption !== 'Cena') {
+			const priceSelectContainer = document.querySelector('.price-select') as HTMLSelectElement;
+			const priceSelect = priceSelectContainer.querySelector('select') as HTMLSelectElement;
+
+			priceSelect.value = 'Cena';
+			setPriceOptions('Cena');
+		}
+	};
+	
+
 	return (
 		<div className={'map--filters'}>
-				<div className="legend_btn">
+				<div onMouseOver={() => handlePinsLegend(true)} onMouseOut={() => handlePinsLegend(false)} className="legend_btn">
 					<span><FontAwesomeIcon icon={faLocationDot}/></span>
 				</div>
 				<div className="muala_btn">
-					<Form.Checkbox onChange={handleMualaBtn}>MUALA</Form.Checkbox>
+					<Form.Checkbox onChange={() => handleMualaBtn()}>MUALA</Form.Checkbox>
 				</div>
 				<div>
 					<BasicSelect class="creator-select" options={Object.values(creatorsOptions)} title="Twórcy" change={(value :any) => setCreatorOptions(value)}/>
@@ -166,6 +231,10 @@ function MapFilters({setFilters} : {setFilters: any}) {
 
 				<div>
 					<BasicSelect class="price-select" options={Object.values(priceOptions)} title="Cena" change={(value :any) => setPriceOptions(value)} />
+				</div>
+
+				<div onClick={setDeafultFilters} className="clear_filters">
+					<span><FontAwesomeIcon icon={faXmark}/></span>
 				</div>
 		</div>
 	);
