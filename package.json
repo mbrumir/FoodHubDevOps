@@ -39,8 +39,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "gulp compile && react-scripts build",
     "test": "react-scripts test",
+    "deploy": "gulp compile && react-scripts build && firebase deploy",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

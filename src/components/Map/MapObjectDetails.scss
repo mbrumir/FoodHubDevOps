@@ -28,16 +28,16 @@
         &::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         &::-webkit-scrollbar-track {
             background-color: transparent;
         }
-        
+
         &::-webkit-scrollbar-thumb {
             background-color: #ef931a;
             border-radius: 10px;
         }
-        
+
         svg {
             color: #ef931a;
         }
@@ -83,7 +83,7 @@
                         margin-left: 25px;
                      }
                 }
-                
+
                 @media (max-width: 640px) {
                    text-align: justify;
                 }
@@ -99,6 +99,10 @@
 
             img {
                 border-radius: 10px;
+                height: 100px;
+                width: auto;
+                max-width: 100px;
+                object-fit: cover;
 
                 @media (max-width: 320px) {
                     display: none;
@@ -288,11 +292,11 @@
                     &::-webkit-scrollbar {
                         width: 8px;
                     }
-                    
+
                     &::-webkit-scrollbar-track {
                         background-color: transparent;
                     }
-                    
+
                     &::-webkit-scrollbar-thumb {
                         background-color: #ef931a;
                         border-radius: 10px;
@@ -323,7 +327,7 @@
                 transition: transform .2s ease-in-out;
 
             }
-            
+
             &:hover svg {
                 transform: translate(-50%, -50%) rotate(90deg);
             }

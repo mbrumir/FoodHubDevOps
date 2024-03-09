@@ -24,7 +24,7 @@ function MapObjectDetails(restaurantName: any) {
 		const target = e.target as HTMLElement;
 		const modal = target.closest('div.map--restaurant-details') as HTMLElement;
 		const footer = document.querySelector('.footer') as HTMLElement;
-		
+
 		if (modal) {
 			modal.style.display="none";
 		}
@@ -58,7 +58,7 @@ function MapObjectDetails(restaurantName: any) {
 			try {
 				if (restaurant[0]?.place?.rating) {
 					const stars = restaurant[0]?.place?.rating;
-					
+
 					switch (true) {
 						case stars < 1.5:
 							setStarsNumber('one');
@@ -91,7 +91,7 @@ function MapObjectDetails(restaurantName: any) {
 			try {
 				if (restaurant[0]?.place?.price_level) {
 					const dollars = restaurant[0]?.place?.price_level;
-					
+
 					switch (true) {
 						case dollars === 1:
 							setDolarsNumber('one');
@@ -135,7 +135,7 @@ function MapObjectDetails(restaurantName: any) {
 
 	useEffect(() => {
 		const info = document.querySelector('.ai_info__modal') as HTMLElement;
-		
+
 		if (info) {
 			aiInfoShow ? info.style.transform = 'scale(1)' : info.style.transform = 'scale(0)';
 		}
@@ -163,18 +163,18 @@ function MapObjectDetails(restaurantName: any) {
 			<div className={'map--restaurant-details'}>
 				<Box style={{overflowY: 'auto', overflowX: 'hidden'}}>
 					<div className="ai_info">
-						<span 
+						<span
 						onMouseEnter={() => setAiInfoShow(true)}
 						onMouseLeave={() => setAiInfoShow(false)}>
 						<FontAwesomeIcon icon={faCircleInfo}/></span>
 						<p className="ai_info__modal"><strong>Uwaga!</strong> Opinie recenzentów oraz informacje o restauracjach zostały przetworzone przez sztuczną inteligencję. Prosimy o weryfikacje przedstawionych na stronie informacji we własnym zakresie.</p>
 					</div>
 					<div className="header">
-						<img src="https://cdn.aniagotuje.com/pictures/articles/2023/07/45574163-v-1500x1500.jpg" alt="zdjęcie z restauracji" width="80px" height="80px"></img>
+						<img src={'data:image/jpeg;base64,' + restaurant[0]?.image} alt="zdjęcie z restauracji" width="80px" height="80px"></img>
 
 						<div className="header__content">
 							<div className="header__content__name">
-								<h2 style={{ WebkitBoxOrient: 'vertical', boxOrient: 'vertical', display: '-webkit-box' }}>{restaurant[0]?.place?.name}</h2>	
+								<h2 style={{ WebkitBoxOrient: 'vertical', boxOrient: 'vertical', display: '-webkit-box' }}>{restaurant[0]?.place?.name}</h2>
 								<span>({foodType[restaurant[0]?.food_type]})</span>
 							</div>
 
