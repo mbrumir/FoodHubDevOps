@@ -30,15 +30,6 @@
   <body>    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-02VFFGY56N"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
-          var rootElement = document.getElementById("root");
-          if (!rootElement || rootElement.innerHTML.trim() === "") {
-            window.location.reload();
-          }
-        }, 1000);
-      });
-
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
