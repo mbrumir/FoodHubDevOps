@@ -7,7 +7,7 @@ import {
 } from '@vis.gl/react-google-maps';
 
 import MapFilters from "./MapFilters";
-import PinsLegend from "../PinsLegend/PinsLegend"; 
+import PinsLegend from "../PinsLegend/PinsLegend";
 import MapObjectDetails from "./MapObjectDetails";
 import { db } from "../../firebase";
 import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from "@firebase/firestore";
@@ -22,7 +22,6 @@ function MapComponent() {
 		mualaOption: false
 	};
 	const [restaurants, setRestaurants] = useState<any[]>([]);
-	const [markers, setMarkers] = useState<any[]>([]);
 	const [filters, setFilters] = useState<any>(defaultFiters); // { creatorOption, foodOption, priceOption }
 	const [restaurantDetails, setRestaurantDetails] = useState<any>(false);
 
@@ -81,8 +80,18 @@ function MapComponent() {
 
 			const typesSnapshot = await getDocs(q);
 			let restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
+			let requiredRestaurantData = restaurantsData.map((restaurant) => {
+				return {
+					lat: restaurant.place.geometry.location.lat,
+					lng: restaurant.place.geometry.location.lng,
+					name: restaurant.place.name,
+					key: restaurant.updated,
+					type: restaurant.food_type,
+					creator: restaurant.channelId
+				}
+			});
 			setRestaurants(restaurantsData);
-			localStorage.setItem('restaurants', JSON.stringify(restaurantsData));
+			localStorage.setItem('restaurants', JSON.stringify(requiredRestaurantData));
 		} catch (error) {
 			console.error("Error fetching data: ", error);
 		}
@@ -143,20 +152,6 @@ function MapComponent() {
 		setRestaurants(searchedRestaurants);
 	}, [filters]);
 
-	useEffect(() => {
-		const markers = restaurants.map((restaurant) => {
-			return {
-				lat: restaurant.place.geometry.location.lat,
-				lng: restaurant.place.geometry.location.lng,
-				name: restaurant.place.name,
-				key: restaurant.updated,
-				type: restaurant.food_type,
-				creator: restaurant.channelId
-			}
-		});
-		setMarkers(markers);
-	}, [restaurants]);
-
 	return (
 		<APIProvider apiKey={API_KEY} libraries={['marker']}>
 			<Map
@@ -170,7 +165,7 @@ function MapComponent() {
 				<MapFilters setFilters={setFilters}/>
 				<PinsLegend></PinsLegend>
 				<MapObjectDetails restaurantName={restaurantDetails}/>
-				{ markers.map((point, index) => (
+				{ restaurants.map((point, index) => (
 						<AdvancedMarker
 								position={point}
 								key={point.key}
