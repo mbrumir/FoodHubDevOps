@@ -103,10 +103,6 @@
                 width: auto;
                 max-width: 100px;
                 object-fit: cover;
-
-                @media (max-width: 320px) {
-                    display: none;
-                }
             }
 
             &__content {
@@ -187,6 +183,11 @@
                         font-family: $family-title;
                         font-size: .75rem;
                     }
+                }
+
+                @media (max-width: 480px) {
+                    max-width: 140px;
+                    margin-right: auto;
                 }
             }
 
@@ -347,6 +348,10 @@
 
         iframe {
             width: 100%;
+
+            @media (max-width: 480px) {
+                margin-bottom: 50px;
+            }
         }
 
         @media (max-width: 640px) {
