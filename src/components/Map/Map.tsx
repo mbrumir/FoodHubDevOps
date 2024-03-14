@@ -13,7 +13,7 @@ import { db } from "../../firebase";
 import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from "@firebase/firestore";
 import './Map.css';
 
-const API_KEY = "AIzaSyButo3F2cEMH6mNiMGIhbqypnxY3YeMGq0";
+const API_KEY = "AIzaSyCaPyEO9A4w4fH15upJ-f3nPRa-OWtkTcg";
 interface MapComponentProps {
 	handleLoadingChange: any
 }
