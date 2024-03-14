@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {
 	APIProvider,
 	Map,
@@ -14,7 +14,11 @@ import { collection, getDocs, where, query, doc, getDoc, DocumentSnapshot } from
 import './Map.css';
 
 const API_KEY = "AIzaSyButo3F2cEMH6mNiMGIhbqypnxY3YeMGq0";
-function MapComponent() {
+interface MapComponentProps {
+	handleLoadingChange: any
+}
+
+const MapComponent: React.FC<MapComponentProps> = ({ handleLoadingChange }) => {
 	const defaultFiters = {
 		creatorOption: 'any',
 		foodOption: 'any',
@@ -51,14 +55,14 @@ function MapComponent() {
 
 	const filterByPrice = (arr: any[], price_level: number) => {
 		return arr.filter(function(obj) {
-					return obj.place.price_level === price_level;
+					return obj.price_level === price_level;
 				}
 		)
 	}
 
 	const filterByChannelId = (arr: any[], channel_id: string) => {
 		return arr.filter(function(obj) {
-					return obj.channelId === channel_id;
+					return obj.creator === channel_id;
 				}
 		)
 	}
@@ -68,6 +72,18 @@ function MapComponent() {
 					return obj.isMualla === isMualla;
 				}
 		)
+	}
+
+	interface Place {
+		lat: number;
+		lng: number;
+		name: string;
+		key: number;
+		type?: string;
+		creator?: string;
+		isMualla?: boolean;
+		price_level?: number;
+		food_type?: string;
 	}
 
 	const fetchData = async () => {
@@ -80,22 +96,51 @@ function MapComponent() {
 
 			const typesSnapshot = await getDocs(q);
 			let restaurantsData = typesSnapshot.docs.map((doc) => doc.data());
-			let requiredRestaurantData = restaurantsData.map((restaurant) => {
+			let requiredRestaurantData: Place[] = restaurantsData.map((restaurant) => {
 				return {
 					lat: restaurant.place.geometry.location.lat,
 					lng: restaurant.place.geometry.location.lng,
 					name: restaurant.place.name,
 					key: restaurant.updated,
 					type: restaurant.food_type,
-					creator: restaurant.channelId
+					creator: restaurant.channelId,
+					isMualla: restaurant.isMualla,
+					price_level: restaurant.place.price_level,
+					food_type: restaurant.food_type
 				}
 			});
-			setRestaurants(restaurantsData);
-			localStorage.setItem('restaurants', JSON.stringify(requiredRestaurantData));
+
+			const updatedRestaurants = updateDuplicatePlaces(requiredRestaurantData);
+
+			const filteredRestaurants = requiredRestaurantData.filter(rest => !updatedRestaurants.includes(rest));
+
+			const allRestaurants = [...filteredRestaurants, ...updatedRestaurants];
+			setRestaurants(allRestaurants);
+
+			localStorage.setItem('restaurants', JSON.stringify(allRestaurants));
 		} catch (error) {
 			console.error("Error fetching data: ", error);
 		}
 	};
+
+	function updateDuplicatePlaces(places: Place[]): Place[] {
+		const updatedPlaces: Place[] = [];
+		const map: { [key: string]: Place } = {};
+
+		places.forEach(place => {
+			const key = `${place.lat},${place.lng}`;
+			if (map[key]) {
+				place.lng += 0.00003;
+				updatedPlaces.push(place);
+			} else {
+				map[key] = place;
+			}
+		});
+		console.log(updatedPlaces)
+
+		return updatedPlaces;
+	}
+
 
 	useEffect(() => {
 		const fetchConfigData = async () => {
@@ -103,12 +148,12 @@ function MapComponent() {
 				const videoConfigDocRef = doc(db, "config", "videos");
 				const videoConfigSnapshot: DocumentSnapshot<any> = await getDoc(videoConfigDocRef);
 				let updated = videoConfigSnapshot.data().updated;
-				let localUpdated = localStorage.getItem('updated');
+				let localUpdated = localStorage.getItem('updated') ?? 0;
 				if (!localUpdated) {
 					updated = new Date().getTime();
 				}
 
-				if (localUpdated !== updated || !localStorage.getItem('restaurants')) {
+				if (localUpdated as number/updated !== 1 || !localStorage.getItem('restaurants')) {
 					localStorage.setItem('updated', updated);
 					fetchData();
 				}
@@ -133,6 +178,10 @@ function MapComponent() {
 
 		let searchedRestaurants = JSON.parse(localStorage.getItem('restaurants') as string);
 
+		if (searchedRestaurants === null) {
+			return;
+		}
+
 			if (filters.foodOption !== 'Rodzaj') {
 				searchedRestaurants = filterByFood(searchedRestaurants, filters.foodOption);
             }
@@ -152,6 +201,14 @@ function MapComponent() {
 		setRestaurants(searchedRestaurants);
 	}, [filters]);
 
+	function hideLoading() {
+		setTimeout(() => {
+			handleLoadingChange(false);
+		}, 500);
+		return function (p1: any) {
+		};
+	}
+
 	return (
 		<APIProvider apiKey={API_KEY} libraries={['marker']}>
 			<Map
@@ -161,13 +218,19 @@ function MapComponent() {
 					defaultCenter={{lat: 52, lng: 19}}
 					gestureHandling={'greedy'}
 					style={{position: "relative"}}
+					onTilesLoaded={hideLoading()}
 					disableDefaultUI>
 				<MapFilters setFilters={setFilters}/>
 				<PinsLegend></PinsLegend>
 				<MapObjectDetails restaurantName={restaurantDetails}/>
 				{ restaurants.map((point, index) => (
 						<AdvancedMarker
-								position={point}
+								position={
+									{
+										lat: point.lat,
+										lng: point.lng
+									}
+								}
 								key={point.key}
 								onClick={() => {
 									handleShowRestaurantDetails();

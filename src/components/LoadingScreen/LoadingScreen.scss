@@ -1,0 +1,50 @@
+.LoadingScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &--main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    &__spinner {
+      animation: rotator 1.4s linear infinite;
+
+      &__path {
+        stroke-dasharray: 187;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        animation:
+                dash 1.4s ease-in-out infinite,
+                colors (1.4s*4) ease-in-out infinite;
+      }
+    }
+  }
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+@keyframes colors {
+  0% { stroke: #ffffff; }
+  50% { stroke: #5d5d5d; }
+  100% { stroke: #ffffff; }
+}
+
+@keyframes dash {
+  0% { stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 187/4;
+    transform:rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform:rotate(450deg);
+  }
+}
