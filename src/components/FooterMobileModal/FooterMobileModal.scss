@@ -1,0 +1,101 @@
+@import '../scss/variables';
+
+.footer-mobile-modal {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    transition: opacity .3s ease-in-out;
+
+    &__content {
+        position: relative;
+        width: 100%;
+        z-index: 1;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+
+            li, a {
+                width: 100%;
+                max-width: 80%;
+                font-size: 1.5rem;
+                color: #fff;
+                font-family: $family-content;
+                cursor: pointer;
+                transform: translateY(3000px);
+                transition: color .3s ease-in-out;
+
+                &:hover {
+                    color: #ef931a;
+                }
+            }
+        }
+    }
+
+    &__background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    @include close_btn;
+
+    .close_btn {
+        z-index: 1;
+    }
+}
+
+body.show-footer-modal {
+    .footer-mobile-modal {
+        opacity: 1;
+
+        &__content {
+            ul {
+                li{
+                    &:nth-child(1) {
+                        transform: translateY(0);
+                        opacity: 1;
+                        transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+                    }
+
+                    &:nth-child(2) {
+                        transform: translateY(0);
+                        opacity: 1;
+                        transition: transform .5s ease-in-out .15s, opacity .5s ease-in-out .15s;
+                    }
+
+                    &:nth-child(3) {
+                        transform: translateY(0);
+                        opacity: 1;
+                        transition: transform .5s ease-in-out .3s, opacity .5s ease-in-out .3s;
+                    }
+
+                    &:nth-child(4) {
+                        transform: translateY(0);
+                        opacity: 1;
+                        transition: transform .5s ease-in-out .45s, opacity .5s ease-in-out .45s;
+                    }
+                }
+
+                a {
+                    transform: translateY(0);
+                    opacity: 1;
+                    transition: transform .5s ease-in-out .45s, opacity .5s ease-in-out .45s;
+                }
+            }
+        }
+    }
+}

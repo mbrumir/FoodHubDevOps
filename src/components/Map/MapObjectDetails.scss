@@ -1,0 +1,461 @@
+@import '../scss/variables';
+
+.map--restaurant-details {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    justify-content: flex-end;
+    width: 100vw;
+    max-width: 450px;
+    z-index: 1;
+
+    .box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        max-height: calc(100vh - 150px);
+        max-width: 450px;
+        font-family: $family-content;
+        border-radius: 0 10px 10px 10px;
+        padding: 2.25rem 1.25rem 1.25rem 1.25rem;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #ef931a;
+            border-radius: 10px;
+        }
+
+        svg {
+            color: #ef931a;
+        }
+
+        div.ai_info {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 100%;
+            font-size: 20px;
+            padding: 5px 10px;
+
+            span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding: 5px 10px;
+                border-radius: 0 0 25px 0;
+                background-color: #fff;
+                z-index: 1;
+            }
+
+            p {
+                max-width: 85%;
+                font-size: .8rem;
+                font-family: $family-content;
+                line-height: 1rem;
+                background-color: #ef931a;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 20px;
+                transform: scale(0);
+                transform-origin: left top;
+                transition: transform .3s ease-in-out;
+
+                strong {
+                    margin-left: 10px;
+                    color: #fff;
+
+                    @media (max-width: 640px) {
+                        margin-left: 25px;
+                     }
+                }
+
+                @media (max-width: 640px) {
+                   text-align: justify;
+                }
+            }
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+
+            img {
+                border-radius: 10px;
+                height: 100px;
+                width: auto;
+                max-width: 100px;
+                object-fit: cover;
+            }
+
+            &__content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                width: 100%;
+                max-width: 300px;
+
+                &__name {
+                    h2 {
+                        font-size: 1.5rem;
+                        font-family: $family-title;
+                        text-align: left;
+                        line-height: 1.8rem;
+                        -webkit-line-clamp: 2;
+                        line-clamp: 2;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        -webkit-box-orient: vertical;
+                    }
+
+                    span {
+                        display: block;
+                        width: 100%;
+                        text-align: left;
+                        font-size: .7rem;
+                        margin-top: -5px;
+                        font-family: $family-title;
+                    }
+                }
+
+                &__opinions {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    &--stars_container {
+                        svg {
+                            color: rgba(239, 147, 26, .2);
+                        }
+
+                        &.one {
+                            svg:nth-child(1) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.two {
+                            svg:nth-child(1), svg:nth-child(2) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.three {
+                            svg:nth-child(1), svg:nth-child(2), svg:nth-child(3) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.four {
+                            svg:nth-child(1), svg:nth-child(2), svg:nth-child(3), svg:nth-child(4) {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+
+                        &.five {
+                            svg {
+                                color: rgb(239, 147, 26);
+                            }
+                        }
+                    }
+
+                    p {
+                        width: 100%;
+                        font-family: $family-title;
+                        font-size: .75rem;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    max-width: 140px;
+                    margin-right: auto;
+                }
+            }
+
+            &__pricing {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+
+                svg {
+                    color: rgba(239,147,26,.2);
+                }
+
+                &.one {
+                    svg:nth-child(1) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.two {
+                    svg:nth-child(1), svg:nth-child(2) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.three {
+                    svg:nth-child(1), svg:nth-child(2), svg:nth-child(3) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.four {
+                    svg:nth-child(1), svg:nth-child(2), svg:nth-child(3), svg:nth-child(4) {
+                        color: #ef931a;
+                    }
+                }
+
+                &.five {
+                    svg {
+                        color: #ef931a;
+                    }
+                }
+            }
+        }
+
+        .restaurant-info {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto auto;
+            margin: 20px 0;
+            gap: 5px;
+
+            svg {
+                width: 20px;
+                margin: 3px 5px 0 0;
+            }
+
+            &__address, &__delivery, &__google {
+                display: flex;
+                align-items: flex-start;
+                max-width: 250px;
+            }
+
+            &__delivery {
+                span {
+                    display: none;
+                }
+
+                &.true {
+                    span.delivery {
+                        display: inline-block;
+                    }
+                }
+            }
+            @media (max-width: 480px) {
+                grid-template-columns: auto;
+            }
+        }
+
+        .creator-rating {
+            width: 100%;
+            margin-bottom: 10px;
+
+            p {
+                font-family: $family-title;
+            }
+
+            div {
+                display: flex;
+                height: 50px;
+
+                svg {
+                    margin-right: 10px;
+                }
+
+                span {
+                    display: block;
+                    font-size: .9rem;
+                    line-height: 1rem;
+                    height: 100%;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background-color: transparent;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: #ef931a;
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            width: 50px;
+            height: 25px;
+            right: 0;
+            top: 0;
+            border-radius: 0 5px 0 0;
+            background-color: #ef931a;
+            cursor: pointer;
+
+            svg {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                color: white;
+                pointer-events: none;
+                transition: transform .2s ease-in-out;
+
+            }
+
+            &:hover svg {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+
+            @media (max-width: 640px) {
+                width: 50px;
+                left: unset;
+                right: 0;
+                border-radius: 0 5px 0 0;
+            }
+
+            @media (max-width: 480px) {
+                border-radius: 5px 0 0 5px;
+                margin-top: 5px;
+            }
+        }
+
+        iframe {
+            width: 100%;
+
+            @media (max-width: 480px) {
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            max-height: calc(100vh - 65px);
+            max-width: 440px;
+            padding: 2.5rem 1.25rem 1.25rem 1.25rem;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+            border-radius: 0 0 10px 10px
+        }
+
+        @media (max-width: 375px) and (max-height: 700px) {
+            justify-content: flex-start;
+        }
+
+        @media (max-height: 568px) {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 992px) {
+        top: 70px;
+    }
+
+    @media (max-width: 480px) {
+        top: 0;
+        right: unset;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.map--restaurant-details.placeholder {
+    .box {
+        .header {
+            justify-content: flex-start;
+
+            &__img_placeholder {
+                width: 80px;
+                height: 80px;
+                @include placeholder;
+            }
+
+            &__content {
+                width: 30%;
+
+                &__name {
+                    width: 100%;
+
+                    &--title {
+                        width: 100%;
+                        height: 20px;
+                        margin-bottom: 10px;
+                        @include placeholder;
+                    }
+
+                    &--reviews {
+                        width: 50%;
+                        height: 10px;
+                        margin: 0 auto;
+                        border-radius: 5px;
+                        @include placeholder;
+                    }
+                }
+
+                &__opinions {
+                    span {
+                        width: 100%;
+                        height: 10px;
+                        margin: 10px 0;
+                        @include placeholder;
+                    }
+                }
+            }
+        }
+
+        .restaurant-info {
+            &__address, &__google, &__delivery {
+                width: 100%;
+                height: 20px;
+                margin: 10px 0;
+                @include placeholder;
+            }
+        }
+
+        .creator-rating {
+            width: 100%;
+            margin-bottom: 10px;
+
+            div {
+                width: 100%;
+                height: 65px;
+                @include placeholder;
+            }
+        }
+
+        .video_placeholder {
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            @include placeholder;
+        }
+    }
+}

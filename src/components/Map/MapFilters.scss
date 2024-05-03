@@ -1,0 +1,171 @@
+@import '../scss/variables';
+
+.map--filters {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      height: 5px;
+    } 
+  
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 10px;
+    }
+  
+    & > div {
+      height: 40px;
+      background: white;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 24px;
+
+      &:first-child {
+        margin-left: 15px;
+      }
+
+      &:last-child {
+        margin-right: 15px;
+      }
+    }
+
+    div.legend_btn {
+      padding: 0;
+      min-width: 40px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      span {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        svg {
+          font-size: 1.5rem;
+          color: #e62928;
+          pointer-events: none;
+          filter: grayscale(1);
+          transition: transform .3s ease-in-out, filter .3s ease-in-out;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+        bottom: -60%;
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV_C2lR_QtdjoBsKrp6dU8MbibebbM5N9kAWnlm9lxOQ&s');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: grayscale(1);
+        transition: filter .3s ease-in-out;
+      }
+
+      &:hover {
+        span svg {
+          transform: translateY(-3px);
+          filter: grayscale(0);
+        }
+
+        &::before {
+          filter: grayscale(0);
+        }
+      }
+    }
+
+    div.muala_btn {
+      padding: 0;
+      transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    }
+
+    div.clear_filters {
+      display: none;
+      opacity: 0;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      background-color: #e62928;
+      cursor: pointer;
+      transition: opacity .3s ease-in-out;
+
+      span {
+        display: flex;
+
+        svg {
+          color: #fff;
+          transition: transform .3s ease-in-out;
+        }
+      }
+
+      &:hover span svg {
+        transform: rotate(90deg);
+      }
+    }
+
+    .select.active:not(.is-multiple):not(.is-loading)::after {
+      transform: rotate(135deg);
+    }
+  
+    input, select, label {
+      border: none !important;
+      background: none !important;
+      font-family: $family-filters;;
+
+      &:focus {
+          outline: none;
+          box-shadow: none;
+      }
+    }
+
+    label.checkbox {
+      padding: 10px 20px;
+      margin-left: -2px;
+      white-space: nowrap;
+      transition: color .3s ease-in-out;
+
+        input{
+          visibility: hidden;
+          width: 0;
+          height: 0;
+        }
+    }
+
+
+    @media (max-width: 992px) {
+      top: 15px;
+      left: 25px;
+    }
+
+    @media (max-width: 640px) {
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 375px) {
+      padding-bottom: 10px;
+    }
+}

@@ -1,0 +1,70 @@
+@import '../scss/variables';
+
+.pwa_modal {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+
+    &__modal-content {
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 10px;
+
+        h2 {
+            position: relative;
+            font-family: $family-title;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        p {
+            position: relative;
+            font-family: $family-content;
+            font-size: .9rem;
+            margin: 10px 0 20px 0;
+            text-align: center;
+        }
+
+        &__buttons {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+
+                &--accept_btn, &--cancel_btn {
+                    font-size: 1rem;
+                    font-family: $family-content;
+                    border-radius: 10px;
+                    padding: 0.5rem 1rem;
+                    border: 1px solid rgb(239, 147, 26);
+                    cursor: pointer;
+                    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+                }
+
+                &--cancel_btn {
+                    color: rgb(239, 147, 26);
+                    background-color: #fff;
+
+                    &:hover {
+                        color: #fff;
+                        background-color: rgb(239, 147, 26);
+                    }
+                }
+
+                &--accept_btn {
+                    color: #fff;
+                    background-color: rgb(239, 147, 26);
+
+                    &:hover {
+                        color: rgb(239, 147, 26);
+                        background-color: #fff;
+                    }
+                }
+        }
+    }
+}
