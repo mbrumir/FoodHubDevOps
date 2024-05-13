@@ -1,7 +1,14 @@
-FROM node:22.1
-COPY .. /app/
+FROM node:22 as BUILD
 WORKDIR /app
-RUN npm install --force
-RUN npm i gulp-install
-CMD ["npm", "start"]
-EXPOSE 3000
+# Cache
+COPY package.json package-lock.json /app/
+RUN npm install
+
+# Build
+COPY . /app/
+RUN npm run build
+WORKDIR /app
+
+# Run
+FROM nginx:alpine
+COPY --from=BUILD /app/build /usr/share/nginx/html
