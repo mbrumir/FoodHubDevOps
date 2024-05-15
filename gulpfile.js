@@ -6,7 +6,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
-const { watch } = require('gulp');
   
 const paths = {
     sass: './src/components/**/*.scss',
